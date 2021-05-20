@@ -62,7 +62,11 @@ import { MaskedText } from "react-native-mask-text";
 
 ## Example
 
-You can see an example app with Expo CLI [here](https://github.com/akinncar/react-native-mask-text/blob/main/example/App.js).
+You can see an example app with Expo CLI [here](example/App.js).
+
+## Contributing
+
+See [Contributing.md](Contributing.md)
 
 ## License
 
