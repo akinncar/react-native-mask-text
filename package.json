@@ -1,6 +1,6 @@
 {
   "name": "react-native-mask-text",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A React Native and Expo library to mask text",
   "keywords": [
     "react",
@@ -15,8 +15,7 @@
   "source": "src/index",
   "types": "lib/typescript/index.d.ts",
   "files": [
-    "lib/",
-    "src/"
+    "lib/"
   ],
   "repository": "https://github.com/akinncar/react-native-mask-text",
   "author": "Akinn Rosa <akinncar@hotmail.com> (https://github.com/akinncar)",
