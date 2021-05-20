@@ -84,7 +84,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://medium.com/@akinncar"><img src="https://avatars.githubusercontent.com/u/42688281?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Akinn Rosa</b></sub></a><br /><a href="https://github.com/akinncar/react-native-mask-text/commits?author=akinncar" title="Code">💻</a></td>
+    <td align="center"><a href="https://medium.com/@akinncar"><img src="https://avatars.githubusercontent.com/u/42688281?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Akinn Rosa</b></sub></a><br /><a href="https://github.com/akinncar/react-native-mask-text/commits?author=akinncar" title="Code">💻</a> <a href="https://github.com/akinncar/react-native-mask-text/commits?author=akinncar" title="Documentation">📖</a></td>
   </tr>
 </table>
 
