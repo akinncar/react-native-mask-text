@@ -8,6 +8,16 @@ This is a library to mask Text and Input components in React Native and Expo (An
 yarn add react-native-mask-text
 ```
 
+## Custom Mask
+
+Pattern used in masked components:
+
+- `9` - accept digit.
+- `A` - accept alpha.
+- `S` - accept alphanumeric.
+
+Ex: AAA-9999
+
 ## Usage (MaskedTextInput)
 
 Component similar with `<TextInput />` but with custom mask option.
@@ -19,7 +29,7 @@ import { MaskedTextInput } from "react-native-mask-text";
 //...
 
 <MaskedTextInput
-  mask="99/99/9999"
+  mask="AAA-9999"
   onChangeText={(text, rawText) => {
     console.log(text);
     console.log(rawText);
