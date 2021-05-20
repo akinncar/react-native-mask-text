@@ -2,7 +2,13 @@
   "name": "react-native-mask-text",
   "version": "0.1.0",
   "description": "A React Native and Expo library to mask text",
-  "keywords": ["react", "react-native", "input", "mask", "expo"],
+  "keywords": [
+    "react",
+    "react-native",
+    "input",
+    "mask",
+    "expo"
+  ],
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
   "react-native": "src/index",
@@ -23,16 +29,36 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "prepare": "bob build"
+    "prepare": "bob build",
+    "release": "release-it"
   },
   "devDependencies": {
+    "@release-it/conventional-changelog": "^2.0.1",
     "@types/react-native": "^0.64.5",
     "react-native-builder-bob": "^0.18.1",
+    "release-it": "^14.6.2",
     "typescript": "^4.2.3"
   },
   "peerDependencies": {
     "react": "*",
     "react-native": "*"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "tagName": "v${version}"
+    },
+    "npm": {
+      "publish": true
+    },
+    "github": {
+      "release": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular"
+      }
+    }
   },
   "react-native-builder-bob": {
     "source": "src",
