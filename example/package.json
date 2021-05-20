@@ -17,7 +17,7 @@
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",
     "react-native-web": "~0.13.12",
-    "react-native-mask-text": "0.1.0"
+    "react-native-mask-text": "^0.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"

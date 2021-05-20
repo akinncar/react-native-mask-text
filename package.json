@@ -24,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/nandorojo/react-native-mask-text/issues"
   },
-  "homepage": "https://github.com/nandorojo/react-native-mask-text#readme",
+  "homepage": "https://github.com/akinncar/react-native-mask-text#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
