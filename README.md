@@ -1,3 +1,5 @@
+# react-native-mask-text
+
 This is a library to mask Text and Input components in React Native and Expo (Android, iOS and Web).
 
 ## Install
