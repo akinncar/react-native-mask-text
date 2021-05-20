@@ -2,6 +2,7 @@
   "name": "react-native-mask-text",
   "version": "0.1.0",
   "description": "A React Native and Expo library to mask text",
+  "keywords": ["react", "react-native", "input", "mask", "expo"],
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
   "react-native": "src/index",
