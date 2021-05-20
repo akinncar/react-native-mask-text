@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { MaskedTextInput } from "react-native-mask-text";
+import { MaskedTextInput, MaskedText } from "react-native-mask-text";
 
 export default function App() {
   const [maskedValue, setMaskedValue] = useState("");
@@ -8,6 +8,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>MaskedTextInput Component:</Text>
       <MaskedTextInput
         mask="99/99/9999"
         onChangeText={(text, rawText) => {
@@ -18,6 +19,11 @@ export default function App() {
       />
       <Text style={styles.paragraph}>Raw Text: {unMaskedValue}</Text>
       <Text style={styles.paragraph}>Masked Text: {maskedValue}</Text>
+
+      <Text style={styles.title}>MaskedText Component:</Text>
+      <MaskedText mask="99/99/9999" style={styles.paragraph}>
+        30081990
+      </MaskedText>
     </View>
   );
 }
@@ -28,6 +34,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#ecf0f1",
     padding: 8,
+  },
+  title: {
+    margin: 24,
+    fontSize: 24,
+    textAlign: "center",
+    fontWeight: "bold",
   },
   paragraph: {
     margin: 24,

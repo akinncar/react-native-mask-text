@@ -6,6 +6,7 @@ interface OnChangeTextProps {
   text: String;
   rawText: String;
 }
+
 interface MaskedTextInputProps {
   mask: string;
   onChangeText: (

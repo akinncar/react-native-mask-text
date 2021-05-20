@@ -53,9 +53,11 @@ function mask(
   pattern: string | string[],
   options?: any
 ) {
-  return typeof pattern === "string"
-    ? masker(String(value), pattern || "", options)
-    : multimasker(String(value), pattern, options);
+  if (typeof pattern === "string") {
+    return masker(String(value), pattern || "", options);
+  }
+
+  return multimasker(String(value), pattern, options);
 }
 
 export { mask, unMask };
