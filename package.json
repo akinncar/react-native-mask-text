@@ -11,8 +11,8 @@
   ],
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
-  "react-native": "src/index",
-  "source": "src/index",
+  "react-native": "lib/module/index.js",
+  "source": "lib/module/index.js",
   "types": "lib/typescript/index.d.ts",
   "files": [
     "lib/"
