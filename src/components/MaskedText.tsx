@@ -1,5 +1,5 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, TextProps } from "react-native";
 import { mask } from "../utils/mask";
 
 interface MaskedTextProps {
@@ -11,6 +11,6 @@ export default function MaskedText({
   children: text,
   mask: pattern,
   ...rest
-}: MaskedTextProps) {
+}: MaskedTextProps & TextProps) {
   return <Text {...rest}>{mask(text, pattern)}</Text>;
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { TextInput } from "react-native";
+import { TextInput, TextInputProps } from "react-native";
 import { mask, unMask } from "../utils/mask";
 
 interface OnChangeTextProps {
@@ -19,7 +19,7 @@ export default function MaskedTextInput({
   mask: pattern,
   onChangeText,
   ...rest
-}: MaskedTextInputProps) {
+}: MaskedTextInputProps & TextInputProps) {
   const [maskedValue, setMaskedValue] = useState("");
   const [unMaskedValue, setUnmaskedValue] = useState("");
 
