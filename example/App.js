@@ -16,6 +16,7 @@ export default function App() {
           setUnmaskedValue(rawText);
         }}
         style={styles.input}
+        keyboardType="numeric"
       />
       <Text style={styles.paragraph}>Raw Text: {unMaskedValue}</Text>
       <Text style={styles.paragraph}>Masked Text: {maskedValue}</Text>
