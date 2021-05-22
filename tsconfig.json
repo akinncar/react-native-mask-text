@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-    "@nandorojo/anchor": ["./src/index"]
+      "@react-native-mask-text": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

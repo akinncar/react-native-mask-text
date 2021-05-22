@@ -1,37 +1,60 @@
 {
   "name": "react-native-mask-text",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "description": "A React Native and Expo library to mask text",
+  "keywords": [
+    "react",
+    "react-native",
+    "input",
+    "mask",
+    "expo"
+  ],
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
-  "react-native": "src/index",
-  "source": "src/index",
+  "react-native": "lib/module/index.js",
+  "source": "lib/module/index.js",
   "types": "lib/typescript/index.d.ts",
   "files": [
-    "lib/",
-    "src/"
+    "lib/"
   ],
   "repository": "https://github.com/akinncar/react-native-mask-text",
   "author": "Akinn Rosa <akinncar@hotmail.com> (https://github.com/akinncar)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nandorojo/react-native-mask-text/issues"
+    "url": "https://github.com/akinncar/react-native-mask-text/issues"
   },
-  "homepage": "https://github.com/nandorojo/react-native-mask-text#readme",
+  "homepage": "https://github.com/akinncar/react-native-mask-text#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "prepare": "bob build"
+    "prepare": "bob build",
+    "release": "release-it"
   },
   "devDependencies": {
+    "@release-it/conventional-changelog": "^2.0.1",
     "@types/react-native": "^0.64.5",
     "react-native-builder-bob": "^0.18.1",
+    "release-it": "^14.6.2",
     "typescript": "^4.2.3"
   },
   "peerDependencies": {
     "react": "*",
     "react-native": "*"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "tagName": "v${version}"
+    },
+    "npm": {
+      "publish": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular"
+      }
+    }
   },
   "react-native-builder-bob": {
     "source": "src",
