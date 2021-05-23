@@ -7,7 +7,8 @@
     "react-native",
     "input",
     "mask",
-    "expo"
+    "expo",
+    "text-input"
   ],
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
@@ -49,6 +50,9 @@
     },
     "npm": {
       "publish": true
+    },
+    "github": {
+      "release": true
     },
     "plugins": {
       "@release-it/conventional-changelog": {
