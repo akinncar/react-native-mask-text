@@ -7,7 +7,7 @@ interface MaskedTextProps {
   mask: string;
 }
 
-export default function MaskedText({
+export function MaskedText({
   children: text,
   mask: pattern,
   ...rest
