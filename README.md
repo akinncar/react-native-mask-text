@@ -75,7 +75,7 @@ const code = mask("ABC1234","AAA-9999") // return ABC-1234
 
 ## Usage `unMask` function
 
-Function used to unMask text.
+Function used to remove text mask.
 
 ```js
 import { unMask } from "react-native-mask-text";
