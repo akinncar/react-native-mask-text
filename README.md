@@ -63,6 +63,26 @@ import { MaskedText } from "react-native-mask-text";
 <MaskedText mask="99/99/9999">30081990</MaskedText>;
 ```
 
+## Usage `mask` function
+
+Function used to mask text.
+
+```js
+import { mask } from "react-native-mask-text";
+
+const code = mask("ABC1234","AAA-9999") // return ABC-1234
+```
+
+## Usage `unMask` function
+
+Function used to unMask text.
+
+```js
+import { unMask } from "react-native-mask-text";
+
+const code = unMask("ABC-1234") // return ABC1234
+```
+
 ## Example
 
 You can see an example app with Expo CLI [here](example/App.js).
