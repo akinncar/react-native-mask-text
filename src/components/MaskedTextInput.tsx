@@ -9,7 +9,7 @@ interface MaskedTextInputProps extends TIProps {
   onChangeText: (text: string, rawText: string) => void;
 }
 
-export default function MaskedTextInput({
+export function MaskedTextInput({
   mask: pattern,
   onChangeText,
   ...rest

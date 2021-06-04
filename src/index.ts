@@ -1,4 +1,6 @@
-import MaskedText from "./components/MaskedText";
-import MaskedTextInput from "./components/MaskedTextInput";
+import { MaskedText } from "./components/MaskedText";
+import { MaskedTextInput } from "./components/MaskedTextInput";
 
-export { MaskedText, MaskedTextInput };
+import { mask, unMask } from "./utils/mask";
+
+export { MaskedText, MaskedTextInput, mask, unMask };
