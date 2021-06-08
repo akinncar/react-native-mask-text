@@ -28,7 +28,7 @@ $ wml add ../react-native-mask-text ./node_modules/react-native-mask-text
 
 Now, your modifies on `../react-native-mask-text` will reflete to `./node_modules/react-native-mask-text`
 
-### Commit and Branch best pratices
+## Commit and Branch best pratices
 
 Currently, we are using flags:
 
