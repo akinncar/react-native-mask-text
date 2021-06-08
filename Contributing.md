@@ -16,6 +16,14 @@ $ yarn && yarn prepare
 
 In a new `react-native init` or `expo init` project, do this:
 
+Install WML globally to can link library to your project
 ```shell
-$ yarn add ../react-native-mask-text
+$ npm install -g wml
 ```
+
+Link library folder to your project
+```shell
+$ wml add ../react-native-mask-text ./node_modules/react-native-mask-text
+```
+
+Now, your modifies on `../react-native-mask-text` will reflete to `./node_modules/react-native-mask-text`
