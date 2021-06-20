@@ -32,6 +32,9 @@
     "prepare": "bob build",
     "release": "dotenv release-it --"
   },
+  "dependencies": {
+    "bignumber.js": "^9.0.1"
+  },
   "devDependencies": {
     "@release-it/conventional-changelog": "^2.0.1",
     "@types/react-native": "^0.64.5",
