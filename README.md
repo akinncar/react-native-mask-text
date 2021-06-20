@@ -5,6 +5,10 @@
 
 This is a library to mask Text and Input components in React Native and Expo (Android, iOS and Web).
 
+## Motivation
+
+This package was created based on other libraries of React Native text mask, with the goal of meeting the need of having a package to be used with all React Native contexts (multi-platform concept) and also be maintained currently. You can read [this blog post on Substack](https://akinncar.substack.com/p/why-another-mask-text-package) to see more information about the creation to the current moment of this package.
+
 ## Install
 
 ```shell
