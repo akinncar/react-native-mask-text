@@ -1,4 +1,3 @@
-import React from "react";
 import { Text, TextProps } from "react-native";
 import { mask } from "../utils/mask";
 
