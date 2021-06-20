@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MaskedText /> should renders correctly 1`] = `
+<Text>
+  RCT-777
+</Text>
+`;

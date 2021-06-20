@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MaskedTextInput /> should renders correctly 1`] = `
+<TextInput
+  allowFontScaling={true}
+  onChangeText={[Function]}
+  rejectResponderTermination={true}
+  underlineColorAndroid="transparent"
+  value=""
+/>
+`;
