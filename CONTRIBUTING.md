@@ -28,6 +28,18 @@ $ wml add ../react-native-mask-text ./node_modules/react-native-mask-text
 
 Now, your modifies on `../react-native-mask-text` will reflete to `./node_modules/react-native-mask-text`
 
+## Quality
+
+Make sure that you didn't break any tests, and if you are adding a new feature, please provide some tests.
+You can check if tests are passing running:
+```shell
+yarn test
+```
+
+All tests and builds are executed on every PR with our workflow on Github.
+
+*We will not accept Pull Requests with errors on tests*
+
 ## Commit and Branch best pratices
 
 Currently, we are using flags:
