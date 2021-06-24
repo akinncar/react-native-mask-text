@@ -1,6 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<MaskedText /> should renders correctly 1`] = `
+exports[`<MaskedText /> should renders correctly with currency mask 1`] = `
+<Text>
+  $59.99
+</Text>
+`;
+
+exports[`<MaskedText /> should renders correctly with custom mask 1`] = `
 <Text>
   RCT-777
 </Text>

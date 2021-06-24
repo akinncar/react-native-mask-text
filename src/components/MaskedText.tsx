@@ -3,14 +3,14 @@ import { mask } from "../utils/mask";
 
 interface MaskedTextProps {
   children: string;
-  mask: string;
+  mask?: string;
   type?: "custom" | "currency";
   options?: any;
 }
 
 export function MaskedText({
   children: text,
-  mask: pattern,
+  mask: pattern = "",
   type = "custom",
   options = {},
   ...rest
