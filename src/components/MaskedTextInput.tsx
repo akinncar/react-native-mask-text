@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
 import { TextInput, TextInputProps } from "react-native";
 import { mask, unMask } from "../utils/mask";
+import type { MaskOptions } from "../@types/MaskOptions";
 
 type TIProps = Omit<TextInputProps, "onChangeText">;
 
 interface MaskedTextInputProps extends TIProps {
   mask?: string;
   type?: "custom" | "currency";
-  options?: any;
+  options?: MaskOptions;
   onChangeText: (text: string, rawText: string) => void;
 }
 
 export function MaskedTextInput({
   mask: pattern = "",
   type = "custom",
-  options = {},
+  options = {} as MaskOptions,
   onChangeText,
   ...rest
 }: MaskedTextInputProps) {
