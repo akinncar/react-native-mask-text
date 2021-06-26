@@ -6,6 +6,9 @@ export default function App() {
   const [maskedValue, setMaskedValue] = useState("");
   const [unMaskedValue, setUnmaskedValue] = useState("");
 
+  const [currencyMaskedValue, setCurrencyMaskedValue] = useState("");
+  const [currencyUnMaskedValue, setCurrencyUnmaskedValue] = useState("");
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>MaskedTextInput Component:</Text>
@@ -20,6 +23,25 @@ export default function App() {
       />
       <Text style={styles.paragraph}>Raw Text: {unMaskedValue}</Text>
       <Text style={styles.paragraph}>Masked Text: {maskedValue}</Text>
+
+      <Text style={styles.title}>MaskedTextInput Component with Currency:</Text>
+      <MaskedTextInput
+        type="currency"
+        options={{
+          prefix: '$',
+          decimalSeparator: '.',
+          groupSeparator: ',',
+          precision: 2
+        }}
+        onChangeText={(text, rawText) => {
+          setCurrencyMaskedValue(text);
+          setCurrencyUnmaskedValue(rawText);
+        }}
+        style={styles.input}
+        keyboardType="numeric"
+      />
+      <Text style={styles.paragraph}>Raw Text: {currencyUnMaskedValue}</Text>
+      <Text style={styles.paragraph}>Masked Text: {currencyMaskedValue}</Text>
 
       <Text style={styles.title}>MaskedText Component:</Text>
       <MaskedText mask="99/99/9999" style={styles.paragraph}>

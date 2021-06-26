@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextInput, TextInputProps } from "react-native";
 import { mask, unMask } from "../utils/mask";
 import type { MaskOptions } from "../@types/MaskOptions";
