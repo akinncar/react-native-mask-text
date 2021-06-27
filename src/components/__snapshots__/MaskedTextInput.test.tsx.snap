@@ -1,6 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<MaskedTextInput /> should renders correctly 1`] = `
+exports[`<MaskedTextInput /> should renders correctly with currency mask 1`] = `
+<TextInput
+  allowFontScaling={true}
+  onChangeText={[Function]}
+  rejectResponderTermination={true}
+  underlineColorAndroid="transparent"
+  value="$0.00"
+/>
+`;
+
+exports[`<MaskedTextInput /> should renders correctly with custom mask 1`] = `
 <TextInput
   allowFontScaling={true}
   onChangeText={[Function]}
