@@ -23,7 +23,7 @@ jobs:
         run: yarn prepare
 
       - name: Auth NPM
-        run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+        run: npm set //registry.npmjs.org/:_authToken $NPM_TOKEN
 
       - name: Release
         run: yarn release
