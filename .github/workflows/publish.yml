@@ -23,9 +23,7 @@ jobs:
         run: yarn prepare
 
       - name: Auth NPM
-        run:
-          git update-index --assume-unchanged .npmrc
-          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+        run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
 
       - name: Release
         run: yarn release
