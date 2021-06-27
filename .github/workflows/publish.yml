@@ -23,10 +23,11 @@ jobs:
         run: yarn prepare
 
       - name: Auth NPM
-        run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+        run: npm config set //registry.npmjs.org/:_authToken $ NPM_TOKEN
 
       - name: Release
         run: yarn release
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
