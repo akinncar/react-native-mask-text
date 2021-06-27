@@ -10,7 +10,7 @@ describe('<MaskedTextInput />', () => {
     expect(container).toMatchSnapshot();
   });
 
-  test('should renders correctly with custom mask', () => {
+  test('should renders correctly with currency mask', () => {
     const container = render(
       <MaskedTextInput type="currency" options={{
         prefix: '$',
