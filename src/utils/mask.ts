@@ -54,7 +54,7 @@ function currencyMasker(value: string = "0", options: any) {
     suffix
   } = options;
 
-  const precisionDivider = parseInt(1 + "0".repeat(precision ||0))
+  const precisionDivider = parseInt(1 + "0".repeat(precision || 0))
   const number = parseInt(value) / precisionDivider;
 
   const formatter = {
