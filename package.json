@@ -1,6 +1,6 @@
 {
   "name": "react-native-mask-text",
-  "version": "0.1.5",
+  "version": "0.0.0",
   "description": "A React Native and Expo library to mask text",
   "keywords": [
     "react",
@@ -30,8 +30,7 @@
   },
   "scripts": {
     "test": "jest --maxWorkers=4",
-    "prepare": "bob build",
-    "release": "dotenv release-it --"
+    "prepare": "bob build"
   },
   "dependencies": {
     "bignumber.js": "^9.0.1"
@@ -39,7 +38,6 @@
   "devDependencies": {
     "@babel/plugin-transform-object-assign": "^7.14.5",
     "@babel/plugin-transform-react-jsx-source": "^7.14.5",
-    "@release-it/conventional-changelog": "^2.0.1",
     "@testing-library/jest-native": "^4.0.1",
     "@testing-library/react-native": "^7.2.0",
     "@types/jest": "^26.0.23",
@@ -52,7 +50,6 @@
     "react-native": "0.64.2",
     "react-native-builder-bob": "^0.18.1",
     "react-test-renderer": "^17.0.2",
-    "release-it": "^14.6.2",
     "ts-jest": "^27.0.3",
     "typescript": "^4.2.3"
   },
@@ -62,23 +59,6 @@
   },
   "resolutions": {
     "react-native/@jest/create-cache-key-function": "^27.0.2"
-  },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore: Release ${version}",
-      "tagName": "v${version}"
-    },
-    "npm": {
-      "publish": true
-    },
-    "github": {
-      "release": true
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "angular"
-      }
-    }
   },
   "react-native-builder-bob": {
     "source": "src",
