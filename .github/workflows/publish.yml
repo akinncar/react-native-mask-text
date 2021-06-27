@@ -22,9 +22,11 @@ jobs:
       - name: Build
         run: yarn prepare
 
-      - name: Build
+      - name: Login NPM
+        run: npm config set //registry.npmjs.org/:_authToken $ NPM_TOKEN
+
+      - name: Release
         run: yarn release
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
