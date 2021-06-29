@@ -1,4 +1,9 @@
-import React, { useEffect, useState, forwardRef } from "react";
+import React, {
+  useEffect,
+  useState,
+  forwardRef,
+  ForwardRefRenderFunction,
+} from "react";
 import { TextInput, TextInputProps } from "react-native";
 import { mask, unMask } from "../utils/mask";
 import type { MaskOptions } from "../@types/MaskOptions";
@@ -12,13 +17,19 @@ interface MaskedTextInputProps extends TIProps {
   onChangeText: (text: string, rawText: string) => void;
 }
 
-export function MaskedTextInputComponent({
-  mask: pattern = "",
-  type = "custom",
-  options = {} as MaskOptions,
-  onChangeText,
-  ...rest
-}: MaskedTextInputProps) {
+export const MaskedTextInputComponent: ForwardRefRenderFunction<
+  TextInput,
+  MaskedTextInputProps
+> = (
+  {
+    mask: pattern = "",
+    type = "custom",
+    options = {} as MaskOptions,
+    onChangeText,
+    ...rest
+  },
+  ref
+) => {
   const initialMaskedValue =
     type === "currency" ? mask("0", pattern, type, options) : "";
   const initialUnMaskedValue = type === "currency" ? "0" : "";
@@ -42,9 +53,10 @@ export function MaskedTextInputComponent({
     <TextInput
       onChangeText={(value) => onChange(value)}
       value={maskedValue}
+      ref={ref}
       {...rest}
     />
   );
-}
+};
 
 export const MaskedTextInput = forwardRef(MaskedTextInputComponent);
