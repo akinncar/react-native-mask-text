@@ -1,17 +1,7 @@
 import { DIGIT, ALPHA, ALPHANUM } from "./constants.json";
 import addPlaceholder from "./addPlaceholder";
+import type { OptionPattern } from "src/@types/OptionPatterns";
 
-type OptionPattern = {
-  pattern: string;
-  placeholder: string;
-};
-
-/**
- * function toPattern
- * @param {number | string} value
- * @param {string | OptionPattern} optionPattern
- * @returns {string}
- */
 function toPattern(
   value: number | string,
   optionPattern: string | OptionPattern

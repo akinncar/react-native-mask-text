@@ -1,12 +1,5 @@
 import { DIGIT, ALPHA, ALPHANUM } from "./constants.json";
 
-/**
- * function addPlaceholder
- * @param {string[]} output
- * @param {number} index
- * @param {string} placeholder
- * @returns {string[]}
- */
 function addPlaceholder(
   output: string[],
   index: number,
