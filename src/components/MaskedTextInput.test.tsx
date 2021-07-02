@@ -10,6 +10,13 @@ describe('<MaskedTextInput />', () => {
     expect(container).toMatchSnapshot();
   });
 
+  test('should renders correctly with custom mask default value', () => {
+    const container = render(
+      <MaskedTextInput mask="AAA-999" onChangeText={mockedOnChangeText} defaultValue="ABC-123" />
+    );
+    expect(container.getByDisplayValue("ABC-123")).toBeTruthy();
+  });
+
   test('should renders correctly with currency mask', () => {
     const container = render(
       <MaskedTextInput type="currency" options={{
