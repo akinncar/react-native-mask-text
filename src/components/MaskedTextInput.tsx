@@ -14,6 +14,7 @@ interface MaskedTextInputProps extends TIProps {
   mask?: string;
   type?: "custom" | "currency";
   options?: MaskOptions;
+  defaultValue?: string;
   onChangeText: (text: string, rawText: string) => void;
 }
 
@@ -25,14 +26,24 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
     mask: pattern = "",
     type = "custom",
     options = {} as MaskOptions,
+    defaultValue,
     onChangeText,
     ...rest
   },
   ref
 ) => {
-  const initialMaskedValue =
-    type === "currency" ? mask("0", pattern, type, options) : "";
-  const initialUnMaskedValue = type === "currency" ? "0" : "";
+  const defaultValueCustom = defaultValue || "";
+  const defaultValueCurrency = defaultValue || "0";
+
+  const initialMaskedValue = 
+    type === "currency" 
+      ? mask(defaultValueCurrency, pattern, type, options) 
+      : mask(defaultValueCustom, pattern, type, options);
+
+  const initialUnMaskedValue =
+    type === "currency" 
+      ? unMask(defaultValueCurrency, type)
+      : unMask(defaultValueCustom, type);
 
   const [maskedValue, setMaskedValue] = useState(initialMaskedValue);
   const [unMaskedValue, setUnmaskedValue] = useState(initialUnMaskedValue);
