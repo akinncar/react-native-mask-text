@@ -27,7 +27,7 @@ test('should mask with currency mask', () => {
     prefix: '$',
     decimalSeparator: '.',
     groupSeparator: ',',
-    precision: 2
+    precision: 2,
   })
 
   expect(received).toBe(expected)
@@ -45,4 +45,4 @@ test('should unMask currency', () => {
   const received = unMask('$59.99', 'currency')
 
   expect(received).toBe(expected)
-})
+});

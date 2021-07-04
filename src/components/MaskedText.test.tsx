@@ -13,16 +13,21 @@ describe('<MaskedText />', () => {
 
   test('should renders correctly with currency mask', () => {
     const container = render(
-      <MaskedText type="currency" options={{
-        prefix: '$',
-        decimalSeparator: '.',
-        groupSeparator: ',',
-        precision: 2
-      }}>5999</MaskedText>
+      <MaskedText
+        type="currency"
+        options={{
+          prefix: '$',
+          decimalSeparator: '.',
+          groupSeparator: ',',
+          precision: 2,
+        }}
+      >
+        5999
+      </MaskedText>
     );
 
     expect(container.getByText('$59.99')).toBeTruthy();
 
     expect(container).toMatchSnapshot();
   });
-})
+});

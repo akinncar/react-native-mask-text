@@ -1,10 +1,10 @@
-import { DIGIT, ALPHA, ALPHANUM } from "./constants.json";
-import addPlaceholder from "./addPlaceholder";
+import { DIGIT, ALPHA, ALPHANUM } from './constants.json'
+import addPlaceholder from './addPlaceholder'
 
 type OptionPattern = {
-  pattern: string;
-  placeholder: string;
-};
+  pattern: string
+  placeholder: string
+}
 
 /**
  * function toPattern
@@ -16,14 +16,12 @@ function toPattern(
   value: number | string,
   optionPattern: string | OptionPattern
 ): string {
-  const pattern =
-    typeof optionPattern === "object" ? optionPattern.pattern : optionPattern;
-  const patternChars = pattern.replace(/\W/g, "");
-  const output = pattern.split("");
-  const values = value.toString().replace(/\W/g, "");
-  const charsValues = values.replace(/\W/g, "");
-  const placeholder =
-    typeof optionPattern === "object" ? optionPattern.placeholder : undefined;
+  const pattern = typeof optionPattern === 'object' ? optionPattern.pattern : optionPattern;
+  const patternChars = pattern.replace(/\W/g, '')
+  const output = pattern.split('')
+  const values = value.toString().replace(/\W/g, '')
+  const charsValues = values.replace(/\W/g, '')
+  const placeholder = typeof optionPattern === 'object' ? optionPattern.placeholder : undefined;
   let charCounter = 0;
   let index;
 
@@ -32,13 +30,13 @@ function toPattern(
     // Reached the end of input
     if (charCounter >= values.length) {
       if (patternChars.length === charsValues.length) {
-        return output.join("");
+        return output.join('')
       }
       if (
         placeholder !== undefined &&
         patternChars.length > charsValues.length
       ) {
-        return addPlaceholder(output, index, placeholder).join("");
+        return addPlaceholder(output, index, placeholder).join('')
       }
       break;
     } else if (
@@ -53,16 +51,16 @@ function toPattern(
       output[index] === ALPHANUM
     ) {
       if (placeholder !== undefined) {
-        return addPlaceholder(output, index, placeholder).join("");
+        return addPlaceholder(output, index, placeholder).join('')
       }
-      return output.slice(0, index).join("");
+      return output.slice(0, index).join('')
 
       // exact match for a non-magic character
     } else if (output[index] === values[charCounter]) {
       charCounter++;
     }
   }
-  return output.join("").substr(0, index);
+  return output.join('').substr(0, index)
 }
 
 export default toPattern;
