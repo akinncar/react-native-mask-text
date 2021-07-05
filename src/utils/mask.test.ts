@@ -45,4 +45,4 @@ test('should unMask currency', () => {
   const received = unMask('$59.99', 'currency')
 
   expect(received).toBe(expected)
-});
+})

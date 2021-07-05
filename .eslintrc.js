@@ -1,26 +1,24 @@
 module.exports = {
   env: {
-      browser: true,
-      es2021: true,
-      node: true,
+    browser: true,
+    es2021: true,
+    node: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-      ecmaFeatures: {
-          jsx: true,
-      },
-      ecmaVersion: 12,
-      sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 12,
+    sourceType: 'module',
   },
-  plugins: ['prettier', 'react', '@typescript-eslint'],
+  plugins: ['react', '@typescript-eslint'],
   rules: {
-      'prettier/prettier': 'error',
-      'no-unused-vars': 'warn',
-      'no-console': 'off',
-      'func-names': 'off',
-      'no-process-exit': 'off',
-      'object-shorthand': 'off',
-      'class-methods-use-this': 'off',
+    'react/prop-types': 'off',
   },
 }

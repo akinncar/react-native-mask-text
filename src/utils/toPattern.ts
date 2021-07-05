@@ -16,16 +16,18 @@ function toPattern(
   value: number | string,
   optionPattern: string | OptionPattern
 ): string {
-  const pattern = typeof optionPattern === 'object' ? optionPattern.pattern : optionPattern;
+  const pattern =
+    typeof optionPattern === 'object' ? optionPattern.pattern : optionPattern
   const patternChars = pattern.replace(/\W/g, '')
   const output = pattern.split('')
   const values = value.toString().replace(/\W/g, '')
   const charsValues = values.replace(/\W/g, '')
-  const placeholder = typeof optionPattern === 'object' ? optionPattern.placeholder : undefined;
-  let charCounter = 0;
-  let index;
+  const placeholder =
+    typeof optionPattern === 'object' ? optionPattern.placeholder : undefined
+  let charCounter = 0
+  let index
 
-  const outputLength = output.length;
+  const outputLength = output.length
   for (index = 0; index < outputLength; index++) {
     // Reached the end of input
     if (charCounter >= values.length) {
@@ -38,13 +40,13 @@ function toPattern(
       ) {
         return addPlaceholder(output, index, placeholder).join('')
       }
-      break;
+      break
     } else if (
       (output[index] === DIGIT && values[charCounter].match(/[0-9]/)) ||
       (output[index] === ALPHA && values[charCounter].match(/[a-zA-Z]/)) ||
       (output[index] === ALPHANUM && values[charCounter].match(/[0-9a-zA-Z]/))
     ) {
-      output[index] = values[charCounter++];
+      output[index] = values[charCounter++]
     } else if (
       output[index] === DIGIT ||
       output[index] === ALPHA ||
@@ -57,10 +59,10 @@ function toPattern(
 
       // exact match for a non-magic character
     } else if (output[index] === values[charCounter]) {
-      charCounter++;
+      charCounter++
     }
   }
   return output.join('').substr(0, index)
 }
 
-export default toPattern;
+export default toPattern

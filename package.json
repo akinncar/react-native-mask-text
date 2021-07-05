@@ -29,7 +29,8 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "lint": "eslint src/**/*.{ts,tsx} --fix",
+    "lint": "eslint src/**/*.{ts,tsx}",
+    "lint:fix": "eslint src/**/*.{ts,tsx} --fix",
     "test": "jest --maxWorkers=4",
     "prepare": "bob build"
   },

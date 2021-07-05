@@ -31,7 +31,7 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
     ...rest
   },
   ref
-) => {
+): JSX.Element => {
   const defaultValueCustom = defaultValue || ''
   const defaultValueCurrency = defaultValue || '0'
 

@@ -13,9 +13,9 @@ function unMask(value: string, type: 'custom' | 'currency' = 'custom') {
     if (!value) return '0'
 
     const unMaskedValue = value.replace(/\D/g, '')
-    const number = parseInt(unMaskedValue.trimStart());
+    const number = parseInt(unMaskedValue.trimStart())
 
-    return number.toString();
+    return number.toString()
   }
 
   return value.replace(/\W/g, '')
@@ -29,7 +29,7 @@ function unMask(value: string, type: 'custom' | 'currency' = 'custom') {
  * @returns {string}
  */
 function masker(value: string, pattern: string, options: any) {
-  return toPattern(value, { pattern, ...options });
+  return toPattern(value, { pattern, ...options })
 }
 
 /**
@@ -38,7 +38,7 @@ function masker(value: string, pattern: string, options: any) {
  * @param {any} options
  * @returns {string}
  */
-function currencyMasker(value: string = '0', options: any) {
+function currencyMasker(value = '0', options: any) {
   const {
     prefix,
     decimalSeparator,
@@ -49,10 +49,10 @@ function currencyMasker(value: string = '0', options: any) {
     fractionGroupSeparator,
     fractionGroupSize,
     suffix,
-  } = options;
+  } = options
 
   const precisionDivider = parseInt(1 + '0'.repeat(precision || 0))
-  const number = parseInt(value) / precisionDivider;
+  const number = parseInt(value) / precisionDivider
 
   const formatter = {
     prefix,
@@ -83,12 +83,12 @@ function multimasker(value: string, patterns: string[], options: any) {
   return masker(
     value,
     patterns.reduce(
-      // eslint-disable-next-line prettier/prettier
-      (memo: string, pattern: string) => value.length <= unMask(memo).length ? memo : pattern,
+      (memo: string, pattern: string) =>
+        value.length <= unMask(memo).length ? memo : pattern,
       patterns[0]
     ),
     options
-  );
+  )
 }
 
 /**
@@ -106,14 +106,14 @@ function mask(
   options?: any
 ) {
   if (type === 'currency') {
-    return currencyMasker(String(value), options);
+    return currencyMasker(String(value), options)
   }
 
   if (typeof pattern === 'string') {
     return masker(String(value), pattern || '', {})
   }
 
-  return multimasker(String(value), pattern, {});
+  return multimasker(String(value), pattern, {})
 }
 
-export { mask, unMask };
+export { mask, unMask }

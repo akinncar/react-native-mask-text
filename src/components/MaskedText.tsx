@@ -16,6 +16,6 @@ export function MaskedText({
   type = 'custom',
   options = {} as MaskOptions,
   ...rest
-}: MaskedTextProps & TextProps) {
+}: MaskedTextProps & TextProps): JSX.Element {
   return <Text {...rest}>{mask(text, pattern, type, options)}</Text>;
 }
