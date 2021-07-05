@@ -1,6 +1,6 @@
 # react-native-mask-text
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This is a library to mask Text and Input components in React Native and Expo (Android, iOS and Web).
@@ -180,6 +180,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://medium.com/@akinncar"><img src="https://avatars.githubusercontent.com/u/42688281?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Akinn Rosa</b></sub></a><br /><a href="https://github.com/akinncar/react-native-mask-text/commits?author=akinncar" title="Code">💻</a> <a href="https://github.com/akinncar/react-native-mask-text/commits?author=akinncar" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/joaoaugustoperin/"><img src="https://avatars.githubusercontent.com/u/49156424?v=4?s=100" width="100px;" alt=""/><br /><sub><b>João Augusto Perin</b></sub></a><br /><a href="https://github.com/akinncar/react-native-mask-text/commits?author=joojscript" title="Code">💻</a></td>
   </tr>
 </table>
 
