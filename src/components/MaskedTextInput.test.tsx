@@ -6,55 +6,74 @@ describe('<MaskedTextInput />', () => {
   const mockedOnChangeText = jest.fn();
 
   test('should renders correctly with custom mask', () => {
-    const container = render(<MaskedTextInput mask="AAA-999" onChangeText={mockedOnChangeText} />);
+    const container = render(
+      <MaskedTextInput mask="AAA-999" onChangeText={mockedOnChangeText} />,
+    );
     expect(container).toMatchSnapshot();
   });
 
   test('should renders correctly with custom mask default value', () => {
     const container = render(
-      <MaskedTextInput mask="AAA-999" onChangeText={mockedOnChangeText} defaultValue="ABC-123" />
+      <MaskedTextInput
+        mask="AAA-999"
+        onChangeText={mockedOnChangeText}
+        defaultValue="ABC-123"
+      />
     );
-    expect(container.getByDisplayValue("ABC-123")).toBeTruthy();
+    expect(container.getByDisplayValue('ABC-123')).toBeTruthy()
   });
 
   test('should renders correctly with currency mask', () => {
     const container = render(
-      <MaskedTextInput type="currency" options={{
-        prefix: '$',
-        decimalSeparator: '.',
-        groupSeparator: ',',
-        precision: 2
-      }} onChangeText={mockedOnChangeText} />
+      <MaskedTextInput
+        type="currency"
+        options={{
+          prefix: '$',
+          decimalSeparator: '.',
+          groupSeparator: ',',
+          precision: 2,
+        }}
+        onChangeText={mockedOnChangeText}
+      />
     );
     expect(container).toMatchSnapshot();
   });
 
   test('should mask input text with custom mask', async () => {
     const container = render(
-      <MaskedTextInput mask="AAA-999" onChangeText={mockedOnChangeText} testID="masked-text-input"/>
+      <MaskedTextInput
+        mask="AAA-999"
+        onChangeText={mockedOnChangeText}
+        testID="masked-text-input"
+      />
     );
 
-    fireEvent.changeText(container.getByTestId("masked-text-input"), 'RCT777')
+    fireEvent.changeText(container.getByTestId('masked-text-input'), 'RCT777')
 
     await waitFor(() => {
-      expect(container.getByDisplayValue("RCT-777")).toBeTruthy();
+      expect(container.getByDisplayValue('RCT-777')).toBeTruthy()
     })
   });
 
   test('should mask input text with currency mask', async () => {
     const container = render(
-      <MaskedTextInput type="currency" options={{
-        prefix: '$',
-        decimalSeparator: '.',
-        groupSeparator: ',',
-        precision: 2
-      }} onChangeText={mockedOnChangeText} testID="masked-text-input"/>
+      <MaskedTextInput
+        type="currency"
+        options={{
+          prefix: '$',
+          decimalSeparator: '.',
+          groupSeparator: ',',
+          precision: 2,
+        }}
+        onChangeText={mockedOnChangeText}
+        testID="masked-text-input"
+      />
     );
 
-    fireEvent.changeText(container.getByTestId("masked-text-input"), '5999')
+    fireEvent.changeText(container.getByTestId('masked-text-input'), '5999')
 
     await waitFor(() => {
-      expect(container.getByDisplayValue("$59.99")).toBeTruthy();
+      expect(container.getByDisplayValue('$59.99')).toBeTruthy()
     })
   });
-})
+});

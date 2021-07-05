@@ -3,19 +3,19 @@ import React, {
   useState,
   forwardRef,
   ForwardRefRenderFunction,
-} from "react";
-import { TextInput, TextInputProps } from "react-native";
-import { mask, unMask } from "../utils/mask";
-import type { MaskOptions } from "../@types/MaskOptions";
+} from 'react'
+import { TextInput, TextInputProps } from 'react-native'
+import { mask, unMask } from '../utils/mask'
+import type { MaskOptions } from '../@types/MaskOptions'
 
-type TIProps = Omit<TextInputProps, "onChangeText">;
+type TIProps = Omit<TextInputProps, 'onChangeText'>
 
 interface MaskedTextInputProps extends TIProps {
-  mask?: string;
-  type?: "custom" | "currency";
-  options?: MaskOptions;
-  defaultValue?: string;
-  onChangeText: (text: string, rawText: string) => void;
+  mask?: string
+  type?: 'custom' | 'currency'
+  options?: MaskOptions
+  defaultValue?: string
+  onChangeText: (text: string, rawText: string) => void
 }
 
 export const MaskedTextInputComponent: ForwardRefRenderFunction<
@@ -23,25 +23,23 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
   MaskedTextInputProps
 > = (
   {
-    mask: pattern = "",
-    type = "custom",
+    mask: pattern = '',
+    type = 'custom',
     options = {} as MaskOptions,
     defaultValue,
     onChangeText,
     ...rest
   },
   ref
-) => {
-  const defaultValueCustom = defaultValue || "";
-  const defaultValueCurrency = defaultValue || "0";
+): JSX.Element => {
+  const defaultValueCustom = defaultValue || ''
+  const defaultValueCurrency = defaultValue || '0'
 
-  const initialMaskedValue = 
-    type === "currency" 
-      ? mask(defaultValueCurrency, pattern, type, options) 
+  const initialMaskedValue =    type === 'currency'
+      ? mask(defaultValueCurrency, pattern, type, options)
       : mask(defaultValueCustom, pattern, type, options);
 
-  const initialUnMaskedValue =
-    type === "currency" 
+  const initialUnMaskedValue =    type === 'currency'
       ? unMask(defaultValueCurrency, type)
       : unMask(defaultValueCustom, type);
 

@@ -1,4 +1,4 @@
-import { DIGIT, ALPHA, ALPHANUM } from "./constants.json";
+import { DIGIT, ALPHA, ALPHANUM } from './constants.json'
 
 /**
  * function addPlaceholder
@@ -19,10 +19,10 @@ function addPlaceholder(
       output[newIndex] === ALPHANUM
     ) {
       // eslint-disable-next-line no-param-reassign
-      output[newIndex] = placeholder;
+      output[newIndex] = placeholder
     }
   }
-  return output;
+  return output
 }
 
-export default addPlaceholder;
+export default addPlaceholder

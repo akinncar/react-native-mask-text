@@ -1,6 +1,6 @@
 /* eslint-disable no-confusing-arrow */
-import { BigNumber } from "bignumber.js";
-import toPattern from "./toPattern";
+import { BigNumber } from 'bignumber.js'
+import toPattern from './toPattern'
 
 /**
  * function unMask(
@@ -8,20 +8,17 @@ import toPattern from "./toPattern";
  * @param {'custom' | 'currency'} type
  * @returns {string}
  */
-function unMask(
-  value: string,   
-  type: "custom" | "currency" = "custom",
-) {
-  if(type === 'currency') {
-    if(!value) return "0";
+function unMask(value: string, type: 'custom' | 'currency' = 'custom') {
+  if (type === 'currency') {
+    if (!value) return '0'
 
-    const unMaskedValue = value.replace(/\D/g,'');
-    const number = parseInt(unMaskedValue.trimStart());
+    const unMaskedValue = value.replace(/\D/g, '')
+    const number = parseInt(unMaskedValue.trimStart())
 
-    return number.toString();
+    return number.toString()
   }
-  
-  return value.replace(/\W/g, "");
+
+  return value.replace(/\W/g, '')
 }
 
 /**
@@ -32,7 +29,7 @@ function unMask(
  * @returns {string}
  */
 function masker(value: string, pattern: string, options: any) {
-  return toPattern(value, { pattern, ...options });
+  return toPattern(value, { pattern, ...options })
 }
 
 /**
@@ -41,8 +38,8 @@ function masker(value: string, pattern: string, options: any) {
  * @param {any} options
  * @returns {string}
  */
-function currencyMasker(value: string = "0", options: any) {
-  const { 
+function currencyMasker(value = '0', options: any) {
+  const {
     prefix,
     decimalSeparator,
     groupSeparator,
@@ -51,11 +48,11 @@ function currencyMasker(value: string = "0", options: any) {
     secondaryGroupSize,
     fractionGroupSeparator,
     fractionGroupSize,
-    suffix
-  } = options;
+    suffix,
+  } = options
 
-  const precisionDivider = parseInt(1 + "0".repeat(precision || 0))
-  const number = parseInt(value) / precisionDivider;
+  const precisionDivider = parseInt(1 + '0'.repeat(precision || 0))
+  const number = parseInt(value) / precisionDivider
 
   const formatter = {
     prefix,
@@ -65,13 +62,13 @@ function currencyMasker(value: string = "0", options: any) {
     secondaryGroupSize,
     fractionGroupSeparator,
     fractionGroupSize,
-    suffix
+    suffix,
   }
-  
+
   const bigNumber = new BigNumber(number)
-  
+
   BigNumber.config({ FORMAT: formatter })
-  
+
   return bigNumber.toFormat(precision)
 }
 
@@ -86,13 +83,12 @@ function multimasker(value: string, patterns: string[], options: any) {
   return masker(
     value,
     patterns.reduce(
-      // eslint-disable-next-line prettier/prettier
       (memo: string, pattern: string) =>
         value.length <= unMask(memo).length ? memo : pattern,
       patterns[0]
     ),
     options
-  );
+  )
 }
 
 /**
@@ -105,19 +101,19 @@ function multimasker(value: string, patterns: string[], options: any) {
  */
 function mask(
   value: string | number,
-  pattern: string | string[] = "",
-  type: "custom" | "currency" = "custom",
+  pattern: string | string[] = '',
+  type: 'custom' | 'currency' = 'custom',
   options?: any
 ) {
-  if (type === "currency") {
-    return currencyMasker(String(value), options);
+  if (type === 'currency') {
+    return currencyMasker(String(value), options)
   }
 
-  if (typeof pattern === "string") {
-    return masker(String(value), pattern || "", {});
+  if (typeof pattern === 'string') {
+    return masker(String(value), pattern || '', {})
   }
 
-  return multimasker(String(value), pattern, {});
+  return multimasker(String(value), pattern, {})
 }
 
-export { mask, unMask };
+export { mask, unMask }

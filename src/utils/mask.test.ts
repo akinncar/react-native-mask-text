@@ -27,7 +27,7 @@ test('should mask with currency mask', () => {
     prefix: '$',
     decimalSeparator: '.',
     groupSeparator: ',',
-    precision: 2
+    precision: 2,
   })
 
   expect(received).toBe(expected)
