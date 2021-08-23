@@ -10,7 +10,7 @@ import type { MaskOptions } from '../@types/MaskOptions'
 
 type TIProps = Omit<TextInputProps, 'onChangeText'>
 
-interface MaskedTextInputProps extends TIProps {
+export interface MaskedTextInputProps extends TIProps {
   mask?: string
   type?: 'custom' | 'currency'
   options?: MaskOptions

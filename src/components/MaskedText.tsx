@@ -3,7 +3,7 @@ import { Text, TextProps } from 'react-native'
 import { mask } from '../utils/mask'
 import type { MaskOptions } from '../@types/MaskOptions'
 
-interface MaskedTextProps {
+export interface MaskedTextProps {
   children: string
   mask?: string
   type?: 'custom' | 'currency'
