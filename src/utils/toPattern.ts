@@ -1,4 +1,4 @@
-import { DIGIT, ALPHA, ALPHANUM } from './constants.json'
+import { DIGIT, ALPHA, ALPHANUM } from './constants'
 import addPlaceholder from './addPlaceholder'
 
 type OptionPattern = {
