@@ -32,6 +32,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Brenont",
+      "name": "Breno Nunes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/37773859?v=4",
+      "profile": "https://brenonunes.dev",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
