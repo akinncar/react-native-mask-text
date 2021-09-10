@@ -166,7 +166,7 @@ const code = unMask("ABC-1234") // return ABC1234
 
 You can see an example app with Expo CLI [here](example/App.js).
 
-You can see a SignUp example working with iOS, Mobile, and Web [here](https://snack.expo.dev/@brenont/react-native-mask-text-example).
+You can see a SignUp example on Expo Snack working with iOS, Mobile, and Web [here](https://snack.expo.dev/@brenont/react-native-mask-text-example).
 
 ## Contributing
 
