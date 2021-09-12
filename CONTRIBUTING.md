@@ -4,30 +4,18 @@ First off, _thank you_ for considering contributing to the React Native Communit
 
 Secondly, we'd like the contribution experience to be as good as possible. While we are a small all-volunteer team, we are happy to hear feedback about your experience, and if we can make the docs or experience better please let us know.
 
+
+
+### Testing and modify with example app
+
+
 ## Build/Minify
 
-To run this lib you will need to compile on start and on every change, in the lib folder run:
+Before commit, verify if build/minify is working.
 
 ```shell
 $ yarn && yarn prepare
 ```
-
-### Testing in a new `react-native init` or `expo init` project
-
-In a new `react-native init` or `expo init` project, do this:
-
-Install WML globally to can link library to your project
-```shell
-$ npm install -g wml
-```
-
-Link library folder to your project
-```shell
-$ wml add ../react-native-mask-text ./node_modules/react-native-mask-text
-```
-
-Now, your modifies on `../react-native-mask-text` will reflete to `./node_modules/react-native-mask-text`
-
 ## Quality
 
 Make sure that you didn't break any tests, and if you are adding a new feature, please provide some tests.
