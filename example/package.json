@@ -1,5 +1,5 @@
 {
-  "name": "expo-template-blank",
+  "name": "example",
   "description": "The Blank project template includes the minimum dependencies to run and an empty root component.",
   "version": "41.0.7",
   "main": "node_modules/expo/AppEntry.js",
@@ -11,13 +11,18 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo/webpack-config": "^0.15.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "bignumber.js": "^9.0.1",
     "expo": "~41.0.1",
     "expo-status-bar": "~1.0.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",
-    "react-native-web": "~0.13.12",
-    "react-native-mask-text": "*"
+    "react-native-web": "~0.13.12"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"
