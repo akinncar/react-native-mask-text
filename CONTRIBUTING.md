@@ -4,29 +4,26 @@ First off, _thank you_ for considering contributing to the React Native Communit
 
 Secondly, we'd like the contribution experience to be as good as possible. While we are a small all-volunteer team, we are happy to hear feedback about your experience, and if we can make the docs or experience better please let us know.
 
-## Build/Minify
+## Testing and modify with example app
 
-To run this lib you will need to compile on start and on every change, in the lib folder run:
-
+To be able to edit thist library, you first step is to download all dependencies.
 ```shell
-$ yarn && yarn prepare
+yarn
 ```
 
-### Testing in a new `react-native init` or `expo init` project
-
-In a new `react-native init` or `expo init` project, do this:
-
-Install WML globally to can link library to your project
+After installing package dependencies, go to example app and install it dependencies as well.
 ```shell
-$ npm install -g wml
+cd example && yarn
 ```
 
-Link library folder to your project
+The last step is to start expo bundler (you need [expo-cli](https://docs.expo.dev/workflow/expo-cli/) installed globally):
 ```shell
-$ wml add ../react-native-mask-text ./node_modules/react-native-mask-text
+yarn start
 ```
 
-Now, your modifies on `../react-native-mask-text` will reflete to `./node_modules/react-native-mask-text`
+Now, scan the QRCode with [Expo Go](https://expo.dev/client) app and start to edit the package, and will be refleted on example app.
+
+*Although the library is available for iOS, Android, and Web, this example app is not working on web enviroment, only Android and iOS. Feel free to open a Pull Request to configure it for web.*
 
 ## Quality
 
@@ -40,13 +37,21 @@ All tests and builds are executed on every PR with our workflow on Github.
 
 *We will not accept Pull Requests with errors on tests*
 
+## Build/Minify
+
+Before commit, verify if build/minify is working.
+
+```shell
+$ yarn && yarn prepare
+```
+
 ## Commit and Branch best pratices
 
 Currently, we are using flags:
 
 To new features and implementations on source code <br />
 Branch: `feat/<branch-name>`<br />
-Commits: `chore: <commit-message>`<br />
+Commits: `feat: <commit-message>`<br />
 
 To improve docs, contributing file, and other related to developer experience <br />
 Branch: `docs/<branch-name>` <br />
