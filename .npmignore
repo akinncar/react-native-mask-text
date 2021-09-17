@@ -1,1 +1,5 @@
 src/
+lib/**/*.test.js
+lib/**/*.test.js.map
+lib/**/*.test.d.ts
+**/__snapshots__/**
