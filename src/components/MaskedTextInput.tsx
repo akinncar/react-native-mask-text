@@ -61,9 +61,9 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
   return (
     <TextInput
       onChangeText={(value) => onChange(value)}
-      value={maskedValue}
       ref={ref}
       {...rest}
+      value={maskedValue}
     />
   );
 };
