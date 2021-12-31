@@ -1,6 +1,8 @@
 import React from 'react'
 import { render, fireEvent, waitFor } from '@testing-library/react-native';
 import { MaskedTextInput } from './MaskedTextInput';
+import { Button, Keyboard, InputAccessoryView } from 'react-native';
+
 
 describe('<MaskedTextInput />', () => {
   const mockedOnChangeText = jest.fn();
@@ -75,5 +77,30 @@ describe('<MaskedTextInput />', () => {
     await waitFor(() => {
       expect(container.getByDisplayValue('$59.99')).toBeTruthy()
     })
+  });
+
+  test('should renders correctly with an accessory view', () => {
+    const container = render(
+      <MaskedTextInput         
+      type="currency"
+      options={{
+        prefix: '$',
+        decimalSeparator: '.',
+        groupSeparator: ',',
+        precision: 2,
+      }} 
+      onChangeText={mockedOnChangeText} 
+      inputAccessoryViewID='Done'
+      inputAccessoryView={
+        <InputAccessoryView nativeID='Done'>
+        <Button
+          onPress={() => Keyboard.dismiss()}
+          title="Clear text"
+        />
+        </InputAccessoryView>
+      }
+      />,
+    );
+    expect(container).toMatchSnapshot();
   });
 });
