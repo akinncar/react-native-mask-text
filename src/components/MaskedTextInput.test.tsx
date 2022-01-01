@@ -101,6 +101,9 @@ describe('<MaskedTextInput />', () => {
       }
       />,
     );
-    expect(container).toMatchSnapshot();
+
+    const tree = container.toJSON();
+    expect(tree[0].props.inputAccessoryViewID).toBe('Done');
+    expect(tree[1].props.nativeID).toBe('Done');
   });
 });
