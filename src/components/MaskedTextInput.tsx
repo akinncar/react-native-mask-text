@@ -28,20 +28,20 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
     options = {} as MaskOptions,
     defaultValue,
     onChangeText,
+    value,
     ...rest
   },
   ref
 ): JSX.Element => {
+  const getMaskedValue = (value: string) => mask(value, pattern, type, options);
+  const getUnMaskedValue = (value: string) => unMask(value, type);
+
   const defaultValueCustom = defaultValue || ''
   const defaultValueCurrency = defaultValue || '0'
 
-  const initialMaskedValue =    type === 'currency'
-      ? mask(defaultValueCurrency, pattern, type, options)
-      : mask(defaultValueCustom, pattern, type, options);
+  const initialMaskedValue = getMaskedValue(type === 'currency' ? defaultValueCurrency : defaultValueCustom);
 
-  const initialUnMaskedValue =    type === 'currency'
-      ? unMask(defaultValueCurrency, type)
-      : unMask(defaultValueCustom, type);
+  const initialUnMaskedValue = getUnMaskedValue(type === 'currency' ? defaultValueCurrency : defaultValueCustom);
 
   const [maskedValue, setMaskedValue] = useState(initialMaskedValue);
   const [unMaskedValue, setUnmaskedValue] = useState(initialUnMaskedValue);
@@ -57,6 +57,16 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
   useEffect(() => {
     onChangeText(maskedValue, unMaskedValue);
   }, [maskedValue, unMaskedValue]);
+
+  useEffect(() => {
+    if (value) {
+      setMaskedValue(getMaskedValue(value));
+      setUnmaskedValue(getUnMaskedValue(value));
+    } else {
+      setMaskedValue(initialMaskedValue);
+      setUnmaskedValue(initialUnMaskedValue);
+    }
+  }, [value])
 
   return (
     <TextInput
