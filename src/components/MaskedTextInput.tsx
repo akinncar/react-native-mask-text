@@ -16,7 +16,7 @@ export interface MaskedTextInputProps extends TIProps {
   options?: MaskOptions
   defaultValue?: string
   onChangeText: (text: string, rawText: string) => void
-  inputAccessoryView?: JSX.Element;
+  inputAccessoryView?: JSX.Element
 }
 
 export const MaskedTextInputComponent: ForwardRefRenderFunction<
@@ -30,35 +30,49 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
     defaultValue,
     onChangeText,
     inputAccessoryView,
+    value,
     ...rest
   },
   ref
 ): JSX.Element => {
+  const getMaskedValue = (value: string) => mask(value, pattern, type, options)
+  const getUnMaskedValue = (value: string) => unMask(value, type)
+
   const defaultValueCustom = defaultValue || ''
   const defaultValueCurrency = defaultValue || '0'
 
-  const initialMaskedValue =    type === 'currency'
-      ? mask(defaultValueCurrency, pattern, type, options)
-      : mask(defaultValueCustom, pattern, type, options);
+  const initialMaskedValue = getMaskedValue(
+    type === 'currency' ? defaultValueCurrency : defaultValueCustom
+  )
 
-  const initialUnMaskedValue =    type === 'currency'
-      ? unMask(defaultValueCurrency, type)
-      : unMask(defaultValueCustom, type);
+  const initialUnMaskedValue = getUnMaskedValue(
+    type === 'currency' ? defaultValueCurrency : defaultValueCustom
+  )
 
-  const [maskedValue, setMaskedValue] = useState(initialMaskedValue);
-  const [unMaskedValue, setUnmaskedValue] = useState(initialUnMaskedValue);
+  const [maskedValue, setMaskedValue] = useState(initialMaskedValue)
+  const [unMaskedValue, setUnmaskedValue] = useState(initialUnMaskedValue)
 
   function onChange(value: string) {
-    const newUnMaskedValue = unMask(value, type);
-    const newMaskedValue = mask(newUnMaskedValue, pattern, type, options);
+    const newUnMaskedValue = unMask(value, type)
+    const newMaskedValue = mask(newUnMaskedValue, pattern, type, options)
 
-    setMaskedValue(newMaskedValue);
-    setUnmaskedValue(newUnMaskedValue);
+    setMaskedValue(newMaskedValue)
+    setUnmaskedValue(newUnMaskedValue)
   }
 
   useEffect(() => {
-    onChangeText(maskedValue, unMaskedValue);
-  }, [maskedValue, unMaskedValue]);
+    onChangeText(maskedValue, unMaskedValue)
+  }, [maskedValue, unMaskedValue])
+
+  useEffect(() => {
+    if (value) {
+      setMaskedValue(getMaskedValue(value))
+      setUnmaskedValue(getUnMaskedValue(value))
+    } else {
+      setMaskedValue(initialMaskedValue)
+      setUnmaskedValue(initialUnMaskedValue)
+    }
+  }, [value])
 
   return (
     <>
@@ -71,7 +85,7 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
       />
       {inputAccessoryView}
     </>
-  );
-};
+  )
+}
 
-export const MaskedTextInput = forwardRef(MaskedTextInputComponent);
+export const MaskedTextInput = forwardRef(MaskedTextInputComponent)
