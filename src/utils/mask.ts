@@ -72,6 +72,14 @@ function currencyMasker(value = '0', options: any) {
   return bigNumber.toFormat(precision)
 }
 
+function dateMasker(value = '', options: any) {
+  const { dateFormat = 'yyyy/mm/dd' } = options
+
+  const regex = /[a-zA-Z]/gi
+  const pattern = dateFormat.replaceAll(regex, '9')
+  return masker(value, pattern, {})
+}
+
 /**
  * function multimasker(
  * @param {string} value
@@ -102,11 +110,15 @@ function multimasker(value: string, patterns: string[], options: any) {
 function mask(
   value: string | number,
   pattern: string | string[] = '',
-  type: 'custom' | 'currency' = 'custom',
+  type: 'custom' | 'currency' | 'date' = 'custom',
   options?: any
 ) {
   if (type === 'currency') {
     return currencyMasker(String(value), options)
+  }
+
+  if (type === 'date') {
+    return dateMasker(String(value), options)
   }
 
   if (typeof pattern === 'string') {
