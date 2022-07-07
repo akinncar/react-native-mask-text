@@ -16,6 +16,7 @@ export interface MaskedTextInputProps extends TIProps {
   options?: MaskOptions
   defaultValue?: string
   onChangeText: (text: string, rawText: string) => void
+  inputAccessoryView?: JSX.Element;
 }
 
 export const MaskedTextInputComponent: ForwardRefRenderFunction<
@@ -29,6 +30,7 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
     defaultValue,
     onChangeText,
     value,
+    inputAccessoryView,
     ...rest
   },
   ref
@@ -69,12 +71,16 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
   }, [value])
 
   return (
-    <TextInput
-      onChangeText={(value) => onChange(value)}
-      value={maskedValue}
-      ref={ref}
-      {...rest}
-    />
+    <>
+      <TextInput
+        onChangeText={(value) => onChange(value)}
+        ref={ref}
+        maxLength={pattern.length || undefined}
+        {...rest}
+        value={maskedValue}
+      />
+      {inputAccessoryView}
+    </>
   );
 };
 

@@ -67,6 +67,48 @@ import { MaskedText } from "react-native-mask-text";
 <MaskedText mask="99/99/9999">30081990</MaskedText>;
 ```
 
+## Date Mask
+
+These options only are used if you use prop `type="date"` in your component:
+
+| Option                 | Type   | Mandatory | Default Value | Description                                 |
+|------------------------|--------|-----------|---------------|---------------------------------------------|
+| dateFormat             | string | No        | yyyy/mm/dd    | Date Format                                 |
+
+### Usage MaskedTextInput (date)
+
+Component similar with `<TextInput />` but with date mask option.
+
+```jsx
+import { StyleSheet } from "react-native";
+import { MaskedTextInput } from "react-native-mask-text";
+
+//...
+
+<MaskedTextInput
+  type="date"
+  options={{
+    dateFormat: 'YYYY/DD/MM',
+  }}
+  onChangeText={(text, rawText) => {
+    console.log(text);
+    console.log(rawText);
+  }}
+  style={styles.input}
+  keyboardType="numeric"
+/>
+
+//...
+
+const styles = StyleSheet.create({
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+  },
+});
+```
+
 ## Currency Mask
 
 These options only are used if you use prop `type="currency"` in your component:
