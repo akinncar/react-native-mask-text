@@ -13,7 +13,7 @@ export default function App() {
     <View style={styles.container}>
       <Text style={styles.title}>MaskedTextInput Component:</Text>
       <MaskedTextInput
-        mask="99/99/9999"
+        mask="AAA-999"
         onChangeText={(text, rawText) => {
           setMaskedValue(text)
           setUnmaskedValue(rawText)
