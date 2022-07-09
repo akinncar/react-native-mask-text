@@ -1,3 +1,7 @@
-export const DIGIT = "9";
-export const ALPHA = "A";
-export const ALPHANUM = "S";
+export const DIGIT = '9'
+export const ALPHA = 'A'
+export const ALPHANUM = 'S'
+export const HOURS = 'H'
+// export const HOURS_AM_PM = 'h'
+export const MINUTES = 'm'
+export const SECONDS = 's'

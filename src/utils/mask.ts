@@ -80,6 +80,13 @@ function dateMasker(value = '', options: any) {
   return masker(value, pattern, {})
 }
 
+function timeMasker(value = '', options: any) {
+  const { timeFormat = 'HH:mm:ss' } = options
+
+  const pattern = timeFormat
+  return masker(value, pattern, {})
+}
+
 /**
  * function multimasker(
  * @param {string} value
@@ -99,26 +106,22 @@ function multimasker(value: string, patterns: string[], options: any) {
   )
 }
 
-/**
- * function mask(
- * @param {string} value
- * @param {string | string[]} patterns
- * @param {'custom' | 'currency'} type
- * @param {any} options
- * @returns {string}
- */
 function mask(
   value: string | number,
   pattern: string | string[] = '',
-  type: 'custom' | 'currency' | 'date' = 'custom',
+  type: 'custom' | 'currency' | 'date' | 'time' = 'custom',
   options?: any
-) {
+): string {
   if (type === 'currency') {
     return currencyMasker(String(value), options)
   }
 
   if (type === 'date') {
     return dateMasker(String(value), options)
+  }
+
+  if (type === 'time') {
+    return timeMasker(String(value), options)
   }
 
   if (typeof pattern === 'string') {
