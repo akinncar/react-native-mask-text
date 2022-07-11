@@ -109,6 +109,48 @@ const styles = StyleSheet.create({
 });
 ```
 
+## Time Mask
+
+These options only are used if you use prop `type="time"` in your component:
+
+| Option                 | Type   | Mandatory | Default Value | Description                                 |
+|------------------------|--------|-----------|---------------|---------------------------------------------|
+| timeFormat             | string | No        | HH:mm:ss      | Time Format                                 |
+
+### Usage MaskedTextInput (time)
+
+Component similar with `<TextInput />` but with time mask option.
+
+```jsx
+import { StyleSheet } from "react-native";
+import { MaskedTextInput } from "react-native-mask-text";
+
+//...
+
+<MaskedTextInput
+  type="time"
+  options={{
+    timeFormat: 'HH:mm:ss', // or 'HH:mm'
+  }}
+  onChangeText={(text, rawText) => {
+    setMaskedValue(text)
+    setUnmaskedValue(rawText)
+  }}
+  style={styles.input}
+  keyboardType="numeric"
+/>
+
+//...
+
+const styles = StyleSheet.create({
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+  },
+});
+```
+
 ## Currency Mask
 
 These options only are used if you use prop `type="currency"` in your component:
