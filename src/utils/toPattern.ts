@@ -1,4 +1,4 @@
-import { DIGIT, ALPHA, ALPHANUM } from './constants'
+import { DIGIT, ALPHA, ALPHANUM, MINUTES, SECONDS, HOURS } from './constants'
 import addPlaceholder from './addPlaceholder'
 
 type OptionPattern = {
@@ -44,13 +44,20 @@ function toPattern(
     } else if (
       (output[index] === DIGIT && values[charCounter].match(/[0-9]/)) ||
       (output[index] === ALPHA && values[charCounter].match(/[a-zA-Z]/)) ||
-      (output[index] === ALPHANUM && values[charCounter].match(/[0-9a-zA-Z]/))
+      (output[index] === ALPHANUM &&
+        values[charCounter].match(/[0-9a-zA-Z]/)) ||
+      (output[index] === HOURS && values[charCounter].match(/[0-23]/)) ||
+      (output[index] === MINUTES && values[charCounter].match(/[0-59]/)) ||
+      (output[index] === SECONDS && values[charCounter].match(/[0-59]/))
     ) {
       output[index] = values[charCounter++]
     } else if (
       output[index] === DIGIT ||
       output[index] === ALPHA ||
-      output[index] === ALPHANUM
+      output[index] === ALPHANUM ||
+      output[index] === HOURS ||
+      output[index] === MINUTES ||
+      output[index] === SECONDS
     ) {
       if (placeholder !== undefined) {
         return addPlaceholder(output, index, placeholder).join('')
