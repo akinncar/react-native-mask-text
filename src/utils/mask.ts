@@ -1,5 +1,6 @@
 /* eslint-disable no-confusing-arrow */
 import { BigNumber } from 'bignumber.js'
+import type { FormatType } from '../@types/FormatType'
 import toPattern from './toPattern'
 
 /**
@@ -109,7 +110,7 @@ function multimasker(value: string, patterns: string[], options: any) {
 function mask(
   value: string | number,
   pattern: string | string[] = '',
-  type: 'custom' | 'currency' | 'date' | 'time' = 'custom',
+  type: FormatType = 'custom',
   options?: any
 ): string {
   if (type === 'currency') {
