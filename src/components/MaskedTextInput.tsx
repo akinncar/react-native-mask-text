@@ -7,16 +7,17 @@ import React, {
 import { TextInput, TextInputProps } from 'react-native'
 import { mask, unMask } from '../utils/mask'
 import type { MaskOptions } from '../@types/MaskOptions'
+import type { FormatType } from '../@types/FormatType'
 
 type TIProps = Omit<TextInputProps, 'onChangeText'>
 
 export interface MaskedTextInputProps extends TIProps {
   mask?: string
-  type?: 'custom' | 'currency'
+  type?: FormatType
   options?: MaskOptions
   defaultValue?: string
   onChangeText: (text: string, rawText: string) => void
-  inputAccessoryView?: JSX.Element;
+  inputAccessoryView?: JSX.Element
 }
 
 export const MaskedTextInputComponent: ForwardRefRenderFunction<
@@ -35,38 +36,43 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
   },
   ref
 ): JSX.Element => {
-  const getMaskedValue = (value: string) => mask(value, pattern, type, options);
-  const getUnMaskedValue = (value: string) => unMask(value, type);
+  const getMaskedValue = (value: string) => mask(value, pattern, type, options)
+  const getUnMaskedValue = (value: string) =>
+    unMask(value, type as 'custom' | 'currency')
 
   const defaultValueCustom = defaultValue || ''
   const defaultValueCurrency = defaultValue || '0'
 
-  const initialMaskedValue = getMaskedValue(type === 'currency' ? defaultValueCurrency : defaultValueCustom);
+  const initialMaskedValue = getMaskedValue(
+    type === 'currency' ? defaultValueCurrency : defaultValueCustom
+  )
 
-  const initialUnMaskedValue = getUnMaskedValue(type === 'currency' ? defaultValueCurrency : defaultValueCustom);
+  const initialUnMaskedValue = getUnMaskedValue(
+    type === 'currency' ? defaultValueCurrency : defaultValueCustom
+  )
 
-  const [maskedValue, setMaskedValue] = useState(initialMaskedValue);
-  const [unMaskedValue, setUnmaskedValue] = useState(initialUnMaskedValue);
+  const [maskedValue, setMaskedValue] = useState(initialMaskedValue)
+  const [unMaskedValue, setUnmaskedValue] = useState(initialUnMaskedValue)
 
   function onChange(value: string) {
-    const newUnMaskedValue = unMask(value, type);
-    const newMaskedValue = mask(newUnMaskedValue, pattern, type, options);
+    const newUnMaskedValue = unMask(value, type as 'custom' | 'currency')
+    const newMaskedValue = mask(newUnMaskedValue, pattern, type, options)
 
-    setMaskedValue(newMaskedValue);
-    setUnmaskedValue(newUnMaskedValue);
+    setMaskedValue(newMaskedValue)
+    setUnmaskedValue(newUnMaskedValue)
   }
 
   useEffect(() => {
-    onChangeText(maskedValue, unMaskedValue);
-  }, [maskedValue, unMaskedValue]);
+    onChangeText(maskedValue, unMaskedValue)
+  }, [maskedValue, unMaskedValue])
 
   useEffect(() => {
     if (value) {
-      setMaskedValue(getMaskedValue(value));
-      setUnmaskedValue(getUnMaskedValue(value));
+      setMaskedValue(getMaskedValue(value))
+      setUnmaskedValue(getUnMaskedValue(value))
     } else {
-      setMaskedValue(initialMaskedValue);
-      setUnmaskedValue(initialUnMaskedValue);
+      setMaskedValue(initialMaskedValue)
+      setUnmaskedValue(initialUnMaskedValue)
     }
   }, [value])
 
@@ -81,7 +87,7 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
       />
       {inputAccessoryView}
     </>
-  );
-};
+  )
+}
 
-export const MaskedTextInput = forwardRef(MaskedTextInputComponent);
+export const MaskedTextInput = forwardRef(MaskedTextInputComponent)
