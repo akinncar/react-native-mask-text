@@ -1,5 +1,6 @@
 /* eslint-disable no-confusing-arrow */
 import { BigNumber } from 'bignumber.js'
+import type { AutoCapitalizeOptions } from 'src/@types/AutoCapitalizeOptions'
 import type { FormatType } from '../@types/FormatType'
 import toPattern from './toPattern'
 
@@ -30,7 +31,24 @@ function unMask(value: string, type: 'custom' | 'currency' = 'custom') {
  * @returns {string}
  */
 function masker(value: string, pattern: string, options: any) {
-  return toPattern(value, { pattern, ...options })
+  const { autoCapitalize } = options
+
+  let sentence = toPattern(value, { pattern, ...options })
+
+  switch (autoCapitalize) {
+    case 'characters':
+      sentence.toUpperCase()
+      break
+    case 'words':
+      sentence.replace(/(?:^|\s)\S/g, (text) => text.toUpperCase())
+      break
+    case 'sentences':
+      const lower = sentence.toLowerCase()
+      lower.charAt(0).toUpperCase() + lower.substring(1)
+      break
+  }
+
+  return sentence
 }
 
 /**
@@ -111,7 +129,8 @@ function mask(
   value: string | number,
   pattern: string | string[] = '',
   type: FormatType = 'custom',
-  options?: any
+  options?: any,
+  autoCapitalize?: AutoCapitalizeOptions
 ): string {
   if (type === 'currency') {
     return currencyMasker(String(value), options)
@@ -126,7 +145,9 @@ function mask(
   }
 
   if (typeof pattern === 'string') {
-    return masker(String(value), pattern || '', {})
+    return masker(String(value), pattern || '', {
+      autoCapitalize: autoCapitalize,
+    })
   }
 
   return multimasker(String(value), pattern, {})

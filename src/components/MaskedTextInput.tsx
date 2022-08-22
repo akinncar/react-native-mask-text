@@ -18,6 +18,7 @@ export interface MaskedTextInputProps extends TIProps {
   defaultValue?: string
   onChangeText: (text: string, rawText: string) => void
   inputAccessoryView?: JSX.Element
+  autoCapitalize?: 'characters' | 'words' | 'sentences' | 'none'
 }
 
 export const MaskedTextInputComponent: ForwardRefRenderFunction<
@@ -32,11 +33,13 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
     onChangeText,
     value,
     inputAccessoryView,
+    autoCapitalize = 'sentences',
     ...rest
   },
   ref
 ): JSX.Element => {
-  const getMaskedValue = (value: string) => mask(value, pattern, type, options)
+  const getMaskedValue = (value: string) =>
+    mask(value, pattern, type, options, autoCapitalize)
   const getUnMaskedValue = (value: string) =>
     unMask(value, type as 'custom' | 'currency')
 
