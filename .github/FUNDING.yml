@@ -1,5 +1,5 @@
 # These are supported funding model platforms
 
-patreon: akinncar
+github: [akinncar] # Replace with up to 4 GitHub Sponsors-enabled usernames e.g., [user1, user2]
 issuehunt: akinncar/react-native-mask-text?tab=idle
 custom: # Replace with up to 4 custom sponsorship URLs e.g., ['link1', 'link2']
