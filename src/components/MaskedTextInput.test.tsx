@@ -106,4 +106,35 @@ describe('<MaskedTextInput />', () => {
     expect(tree[0].props.inputAccessoryViewID).toBe('Done');
     expect(tree[1].props.nativeID).toBe('Done');
   });
+  test('should be bold when the textBold attribute is added', () => {
+    const container  =
+    render(<MaskedTextInput 
+      testID="masked-text-input" 
+      onChangeText={mockedOnChangeText} 
+      textBold 
+      mask="99/99/9999"
+      />)
+      expect(container.getByTestId('masked-text-input')).toHaveStyle({fontWeight: 'bold' });
+    });
+    test('should be italic when the textItalic attribute is added', () => {
+      const container  =
+      render(<MaskedTextInput 
+        testID="masked-text-input" 
+        onChangeText={mockedOnChangeText} 
+        textItalic 
+        mask="99/99/9999"
+        />)
+        expect(container.getByTestId('masked-text-input')).toHaveStyle({fontStyle: 'italic' });
+    });
+    test('should be the line style added to the text when the textDecoration attribute has a non-null value', () => {
+      const textDecorationLine = 'underline'
+      const container  =
+      render(<MaskedTextInput
+        testID="masked-text-input" 
+        onChangeText={mockedOnChangeText} 
+        textDecoration={textDecorationLine} 
+        mask="99/99/9999"
+        />)
+        expect(container.getByTestId('masked-text-input')).toHaveStyle({textDecorationLine: textDecorationLine });
+    });  
 });

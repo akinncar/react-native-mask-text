@@ -30,4 +30,26 @@ describe('<MaskedText />', () => {
 
     expect(container).toMatchSnapshot();
   });
-});
+  test('should be bold when the textBold attribute is added', () => {
+    const container  =
+    render(<MaskedText textBold mask="99/99/9999">
+        30081990
+      </MaskedText>)
+      expect(container.getByText('30/08/1990')).toHaveStyle({fontWeight: 'bold' });
+    });
+    test('should be italic when the textItalic attribute is added', () => {
+      const container  =
+      render(<MaskedText textItalic mask="99/99/9999">
+          30081990
+        </MaskedText>)
+        expect(container.getByText('30/08/1990')).toHaveStyle({fontStyle: 'italic' });
+    });
+    test('should be the line style added to the text when the textDecoration attribute has a non-null value', () => {
+      const textDecorationLine = 'underline'
+      const container  =
+      render(<MaskedText textDecoration={textDecorationLine} mask="99/99/9999">
+          30081990
+        </MaskedText>)
+        expect(container.getByText('30/08/1990')).toHaveStyle({textDecorationLine: textDecorationLine });
+    });    
+})
