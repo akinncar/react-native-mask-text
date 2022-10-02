@@ -6,11 +6,10 @@ import React, {
 } from 'react'
 import { TextInput, TextInputProps } from 'react-native'
 import { mask, unMask } from '../utils/mask'
-import type { MaskOptions } from '../@types/MaskOptions'
-import type { FormatType } from '../@types/FormatType'
+import type { FormatType, MaskOptions, StyleObj, TextDecorationOptions } from 'src/@types'
+
 
 type TIProps = Omit<TextInputProps, 'onChangeText'>
-
 export interface MaskedTextInputProps extends TIProps {
   mask?: string
   type?: FormatType
@@ -19,6 +18,10 @@ export interface MaskedTextInputProps extends TIProps {
   onChangeText: (text: string, rawText: string) => void
   inputAccessoryView?: JSX.Element
   autoCapitalize?: 'characters' | 'words' | 'sentences' | 'none'
+  textBold?: boolean
+  textItalic?:boolean
+  textDecoration?:TextDecorationOptions
+  style?: StyleObj
 }
 
 export const MaskedTextInputComponent: ForwardRefRenderFunction<
@@ -34,10 +37,20 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
     value,
     inputAccessoryView,
     autoCapitalize = 'sentences',
+    textBold,
+    textItalic,
+    textDecoration,
+    style,
     ...rest
   },
   ref
 ): JSX.Element => {
+  const styleSheet = {
+    ...(typeof style === 'object' ? style : {}),
+    fontWeight:textBold && 'bold',
+    fontStyle: textItalic && 'italic',
+    textDecorationLine: textDecoration
+  }
   const getMaskedValue = (value: string) =>
     mask(value, pattern, type, options, autoCapitalize)
   const getUnMaskedValue = (value: string) =>
@@ -87,6 +100,7 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
         maxLength={pattern.length || undefined}
         {...rest}
         value={maskedValue}
+        style={{...styleSheet} as StyleObj}
       />
       {inputAccessoryView}
     </>
