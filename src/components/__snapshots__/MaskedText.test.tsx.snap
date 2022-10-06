@@ -1,13 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<MaskedText /> should renders correctly with currency mask 1`] = `
-<Text>
+<Text
+  style={
+    Object {
+      "fontStyle": "normal",
+      "fontWeight": "normal",
+      "textDecorationLine": "none",
+    }
+  }
+>
   $59.99
 </Text>
 `;
 
 exports[`<MaskedText /> should renders correctly with custom mask 1`] = `
-<Text>
+<Text
+  style={
+    Object {
+      "fontStyle": "normal",
+      "fontWeight": "normal",
+      "textDecorationLine": "none",
+    }
+  }
+>
   RCT-777
 </Text>
 `;

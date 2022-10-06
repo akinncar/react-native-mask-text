@@ -33,7 +33,7 @@ function unMask(value: string, type: 'custom' | 'currency' = 'custom') {
 function masker(value: string, pattern: string, options: any) {
   const { autoCapitalize } = options
 
-  let sentence = toPattern(value, { pattern, ...options })
+  const sentence = toPattern(value, { pattern, ...options })
 
   switch (autoCapitalize) {
     case 'characters':
@@ -42,10 +42,11 @@ function masker(value: string, pattern: string, options: any) {
     case 'words':
       sentence.replace(/(?:^|\s)\S/g, (text) => text.toUpperCase())
       break
-    case 'sentences':
+    case 'sentences':{
       const lower = sentence.toLowerCase()
       lower.charAt(0).toUpperCase() + lower.substring(1)
       break
+    }
   }
 
   return sentence

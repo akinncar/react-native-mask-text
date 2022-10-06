@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MaskedTextInput /> should renders correctly with currency mask 1`] = `
+<TextInput
+  allowFontScaling={true}
+  onChangeText={[Function]}
+  rejectResponderTermination={true}
+  style={
+    Object {
+      "fontStyle": undefined,
+      "fontWeight": undefined,
+      "textDecorationLine": undefined,
+    }
+  }
+  underlineColorAndroid="transparent"
+  value="$0.00"
+/>
+`;
+
+exports[`<MaskedTextInput /> should renders correctly with custom mask 1`] = `
+<TextInput
+  allowFontScaling={true}
+  maxLength={7}
+  onChangeText={[Function]}
+  rejectResponderTermination={true}
+  style={
+    Object {
+      "fontStyle": undefined,
+      "fontWeight": undefined,
+      "textDecorationLine": undefined,
+    }
+  }
+  underlineColorAndroid="transparent"
+  value=""
+/>
+`;
