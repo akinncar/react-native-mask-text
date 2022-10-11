@@ -1,7 +1,4 @@
 # react-native-mask-text
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This is a library to mask Text and Input components in React Native and Expo (Android, iOS and Web).
 
@@ -255,29 +252,6 @@ You can see a SignUp example on Expo Snack working with iOS, Mobile, and Web [he
 ## Contributing
 
 See [Contributing.md](Contributing.md)
-
-## Contributors ✨
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href="https://medium.com/@akinncar"><img src="https://avatars.githubusercontent.com/u/42688281?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Akinn Rosa</b></sub></a><br /><a href="https://github.com/akinncar/react-native-mask-text/commits?author=akinncar" title="Code">💻</a> <a href="https://github.com/akinncar/react-native-mask-text/commits?author=akinncar" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://www.linkedin.com/in/joaoaugustoperin/"><img src="https://avatars.githubusercontent.com/u/49156424?v=4?s=100" width="100px;" alt=""/><br /><sub><b>João Augusto Perin</b></sub></a><br /><a href="https://github.com/akinncar/react-native-mask-text/commits?author=joojscript" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/jimmi-joensson"><img src="https://avatars.githubusercontent.com/u/15996198?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jimmi Jønsson</b></sub></a><br /><a href="https://github.com/akinncar/react-native-mask-text/commits?author=jimmi-joensson" title="Code">💻</a></td>
-    <td align="center"><a href="https://brenonunes.dev"><img src="https://avatars.githubusercontent.com/u/37773859?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Breno Nunes</b></sub></a><br /><a href="https://github.com/akinncar/react-native-mask-text/commits?author=Brenont" title="Documentation">📖</a></td>
-  </tr>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
 ## License
 
