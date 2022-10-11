@@ -7,6 +7,13 @@ import { Button, Keyboard, InputAccessoryView } from 'react-native';
 describe('<MaskedTextInput />', () => {
   const mockedOnChangeText = jest.fn();
 
+  test('should render correctly without a mask', () => {
+    const container = render(
+      <MaskedTextInput value="churrasco" onChangeText={mockedOnChangeText} />,
+    );
+    expect(container).toMatchSnapshot();
+  })
+
   test('should renders correctly with custom mask', () => {
     const container = render(
       <MaskedTextInput mask="AAA-999" onChangeText={mockedOnChangeText} />,

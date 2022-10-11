@@ -69,6 +69,7 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
 
   const [maskedValue, setMaskedValue] = useState(initialMaskedValue)
   const [unMaskedValue, setUnmaskedValue] = useState(initialUnMaskedValue)
+  const actualValue = pattern || type === "currency" ? maskedValue : unMaskedValue;
 
   function onChange(value: string) {
     const newUnMaskedValue = unMask(value, type as 'custom' | 'currency')
@@ -99,7 +100,7 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
         ref={ref}
         maxLength={pattern.length || undefined}
         {...rest}
-        value={maskedValue}
+        value={actualValue}
         style={{...styleSheet} as StyleObj}
       />
       {inputAccessoryView}
