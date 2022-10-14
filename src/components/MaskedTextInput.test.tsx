@@ -9,7 +9,7 @@ describe('<MaskedTextInput />', () => {
 
   test('should render correctly without a mask', () => {
     const container = render(
-      <MaskedTextInput value="churrasco" onChangeText={mockedOnChangeText} />,
+      <MaskedTextInput value="with space and special* characters;" onChangeText={mockedOnChangeText} />,
     );
     expect(container).toMatchSnapshot();
   })

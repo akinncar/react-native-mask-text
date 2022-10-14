@@ -13,7 +13,7 @@ exports[`<MaskedTextInput /> should render correctly without a mask 1`] = `
     }
   }
   underlineColorAndroid="transparent"
-  value="churrasco"
+  value="with space and special* characters;"
 />
 `;
 

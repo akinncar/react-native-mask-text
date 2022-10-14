@@ -59,6 +59,8 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
   const defaultValueCustom = defaultValue || ''
   const defaultValueCurrency = defaultValue || '0'
 
+  const initialRawValue = value;
+
   const initialMaskedValue = getMaskedValue(
     type === 'currency' ? defaultValueCurrency : defaultValueCustom
   )
@@ -69,7 +71,8 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
 
   const [maskedValue, setMaskedValue] = useState(initialMaskedValue)
   const [unMaskedValue, setUnmaskedValue] = useState(initialUnMaskedValue)
-  const actualValue = pattern || type === "currency" ? maskedValue : unMaskedValue;
+  const [rawValue, setRawValue] = useState(initialRawValue);
+  const actualValue = pattern || type === "currency" ? maskedValue : rawValue;
 
   function onChange(value: string) {
     const newUnMaskedValue = unMask(value, type as 'custom' | 'currency')
@@ -77,6 +80,7 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
 
     setMaskedValue(newMaskedValue)
     setUnmaskedValue(newUnMaskedValue)
+    setRawValue(value);
   }
 
   useEffect(() => {
