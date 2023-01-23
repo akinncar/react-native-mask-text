@@ -42,7 +42,7 @@
     "@babel/plugin-transform-react-jsx-source": "^7.14.5",
     "@testing-library/jest-native": "^4.0.1",
     "@testing-library/react-native": "^7.2.0",
-    "@types/jest": "^26.0.23",
+    "@types/jest": "^29.2.6",
     "@types/react-native": "^0.64.5",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
