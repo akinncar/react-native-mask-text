@@ -44,7 +44,7 @@
     "@testing-library/react-native": "^7.2.0",
     "@types/jest": "^26.0.23",
     "@types/react-native": "^0.64.5",
-    "@typescript-eslint/eslint-plugin": "^4.28.1",
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
     "@typescript-eslint/parser": "^4.28.1",
     "babel-jest": "^27.0.2",
     "dotenv-cli": "^4.0.0",
