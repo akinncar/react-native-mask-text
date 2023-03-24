@@ -251,7 +251,7 @@ You can see a SignUp example on Expo Snack working with iOS, Mobile, and Web [he
 
 ## Contributing
 
-See [Contributing.md](Contributing.md)
+See [Contributing.md](CONTRIBUTING.md)
 
 ## License
 
