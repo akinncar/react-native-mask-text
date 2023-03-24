@@ -45,12 +45,14 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
   },
   ref
 ): JSX.Element => {
-  const styleSheet = {
-    ...(typeof style === 'object' ? style : {}),
-    fontWeight:textBold && 'bold',
-    fontStyle: textItalic && 'italic',
-    textDecorationLine: textDecoration
-  }
+  const styleSheet = [
+    {
+      fontWeight: textBold && 'bold',
+      fontStyle: textItalic && 'italic',
+      textDecorationLine: textDecoration
+    },
+    style
+  ]
   const getMaskedValue = (value: string) =>
     mask(value, pattern, type, options, autoCapitalize)
   const getUnMaskedValue = (value: string) =>
@@ -105,7 +107,7 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
         maxLength={pattern.length || undefined}
         {...rest}
         value={actualValue}
-        style={{...styleSheet} as StyleObj}
+        style={styleSheet as StyleObj}
       />
       {inputAccessoryView}
     </>

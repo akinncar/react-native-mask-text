@@ -24,11 +24,14 @@ export function MaskedText({
   style,
   ...rest
 }: MaskedTextProps & TextProps): JSX.Element {
-  const styleSheet = {
-    ...(typeof style === 'object' ? style : {}),
-    fontWeight:textBold ? 'bold' : 'normal',
-    fontStyle: textItalic ? 'italic' : 'normal',
-    textDecorationLine: textDecoration ? textDecoration : 'none'
-  }
-  return <Text {...rest} style={{...styleSheet} as StyleObj}>{mask(text, pattern, type, options)}</Text>;
+  const styleSheet = [
+    {
+      fontWeight: textBold && 'bold',
+      fontStyle: textItalic && 'italic',
+      textDecorationLine: textDecoration
+    },
+    style
+  ]
+  
+  return <Text {...rest} style={styleSheet as StyleObj}>{mask(text, pattern, type, options)}</Text>;
 }
