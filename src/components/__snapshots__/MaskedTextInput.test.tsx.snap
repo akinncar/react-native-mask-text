@@ -6,11 +6,14 @@ exports[`<MaskedTextInput /> should render correctly without a mask 1`] = `
   onChangeText={[Function]}
   rejectResponderTermination={true}
   style={
-    Object {
-      "fontStyle": undefined,
-      "fontWeight": undefined,
-      "textDecorationLine": undefined,
-    }
+    Array [
+      Object {
+        "fontStyle": undefined,
+        "fontWeight": undefined,
+        "textDecorationLine": undefined,
+      },
+      undefined,
+    ]
   }
   underlineColorAndroid="transparent"
   value="with space and special* characters;"
@@ -23,11 +26,14 @@ exports[`<MaskedTextInput /> should renders correctly with currency mask 1`] = `
   onChangeText={[Function]}
   rejectResponderTermination={true}
   style={
-    Object {
-      "fontStyle": undefined,
-      "fontWeight": undefined,
-      "textDecorationLine": undefined,
-    }
+    Array [
+      Object {
+        "fontStyle": undefined,
+        "fontWeight": undefined,
+        "textDecorationLine": undefined,
+      },
+      undefined,
+    ]
   }
   underlineColorAndroid="transparent"
   value="$0.00"
@@ -41,11 +47,14 @@ exports[`<MaskedTextInput /> should renders correctly with custom mask 1`] = `
   onChangeText={[Function]}
   rejectResponderTermination={true}
   style={
-    Object {
-      "fontStyle": undefined,
-      "fontWeight": undefined,
-      "textDecorationLine": undefined,
-    }
+    Array [
+      Object {
+        "fontStyle": undefined,
+        "fontWeight": undefined,
+        "textDecorationLine": undefined,
+      },
+      undefined,
+    ]
   }
   underlineColorAndroid="transparent"
   value=""

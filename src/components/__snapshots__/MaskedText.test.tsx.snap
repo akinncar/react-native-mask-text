@@ -3,11 +3,14 @@
 exports[`<MaskedText /> should renders correctly with currency mask 1`] = `
 <Text
   style={
-    Object {
-      "fontStyle": "normal",
-      "fontWeight": "normal",
-      "textDecorationLine": "none",
-    }
+    Array [
+      Object {
+        "fontStyle": undefined,
+        "fontWeight": undefined,
+        "textDecorationLine": undefined,
+      },
+      undefined,
+    ]
   }
 >
   $59.99
@@ -17,11 +20,14 @@ exports[`<MaskedText /> should renders correctly with currency mask 1`] = `
 exports[`<MaskedText /> should renders correctly with custom mask 1`] = `
 <Text
   style={
-    Object {
-      "fontStyle": "normal",
-      "fontWeight": "normal",
-      "textDecorationLine": "none",
-    }
+    Array [
+      Object {
+        "fontStyle": undefined,
+        "fontWeight": undefined,
+        "textDecorationLine": undefined,
+      },
+      undefined,
+    ]
   }
 >
   RCT-777
