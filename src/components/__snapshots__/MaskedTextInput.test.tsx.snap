@@ -3,6 +3,7 @@
 exports[`<MaskedTextInput /> should render correctly without a mask 1`] = `
 <TextInput
   allowFontScaling={true}
+  autoCapitalize="sentences"
   onChangeText={[Function]}
   rejectResponderTermination={true}
   style={
@@ -23,6 +24,7 @@ exports[`<MaskedTextInput /> should render correctly without a mask 1`] = `
 exports[`<MaskedTextInput /> should renders correctly with currency mask 1`] = `
 <TextInput
   allowFontScaling={true}
+  autoCapitalize="sentences"
   onChangeText={[Function]}
   rejectResponderTermination={true}
   style={
@@ -43,6 +45,7 @@ exports[`<MaskedTextInput /> should renders correctly with currency mask 1`] = `
 exports[`<MaskedTextInput /> should renders correctly with custom mask 1`] = `
 <TextInput
   allowFontScaling={true}
+  autoCapitalize="sentences"
   maxLength={7}
   onChangeText={[Function]}
   rejectResponderTermination={true}
