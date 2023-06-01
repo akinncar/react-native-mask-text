@@ -1,7 +1,7 @@
 node_modules/
 example/node_modules/
 lib/
-yarn.lock
+package-lock.json
 .env
 .idea
 .npmrc
