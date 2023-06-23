@@ -15,6 +15,7 @@ function unMask(value: string, type: 'custom' | 'currency' = 'custom') {
     if (!value) return '0'
 
     const unMaskedValue = value.replace(/\D/g, '')
+    if (!unMaskedValue) return '0'
     const number = parseInt(unMaskedValue.trimStart())
 
     return number.toString()
