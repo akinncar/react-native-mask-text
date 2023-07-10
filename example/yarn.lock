@@ -5386,10 +5386,10 @@ expo-pwa@0.0.123:
     commander "2.20.0"
     update-check "1.5.3"
 
-expo-status-bar@~1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/expo-status-bar/-/expo-status-bar-1.4.0.tgz#c0317de2c53878340f4b4f00ff7e4ba14399a7fb"
-  integrity sha512-vh98g8qMIjig/2XTBsoAWS6Vo2dIIwDWjB3/GiuZ9Lazpxc9GO/APfJ4dar7MibzIDUKIrjotrcL6rLdPH13Ew==
+expo-status-bar@~1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/expo-status-bar/-/expo-status-bar-1.6.0.tgz#e79ffdb9a84d2e0ec9a0dc7392d9ab364fefa9cf"
+  integrity sha512-e//Oi2WPdomMlMDD3skE4+1ZarKCJ/suvcB4Jo/nO427niKug5oppcPNYO+csR6y3ZglGuypS+3pp/hJ+Xp6fQ==
 
 expo@^46.0.0:
   version "46.0.13"
@@ -11215,10 +11215,8 @@ watchpack@^1.6.1:
   resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-1.7.5.tgz#1267e6c55e0b9b5be44c2023aed5437a2c26c453"
   integrity sha512-9P3MWk6SrKjHsGkLT2KHXdQ/9SNkyoJbabxnKOoJepsvJjJG8uYTR3yTPxPQvNDI3w4Nz1xnE0TLHK4RIVe/MQ==
   dependencies:
-    chokidar "^3.4.1"
     graceful-fs "^4.1.2"
     neo-async "^2.5.0"
-    watchpack-chokidar2 "^2.0.1"
   optionalDependencies:
     chokidar "^3.4.1"
     watchpack-chokidar2 "^2.0.1"
