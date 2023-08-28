@@ -46,7 +46,7 @@
     "@types/react-native": "^0.64.5",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
-    "babel-jest": "^27.0.2",
+    "babel-jest": "^29.6.4",
     "dotenv-cli": "^4.0.0",
     "eslint": "^7.30.0",
     "eslint-config-airbnb": "^18.2.1",
