@@ -16,7 +16,7 @@
     "babel-loader": "^8.1.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
-    "bignumber.js": "^9.0.1",
+    "bignumber.js": "^9.1.2",
     "expo": "^46.0.0",
     "expo-status-bar": "~1.4.0",
     "react": "18.0.0",
