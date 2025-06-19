@@ -14,6 +14,39 @@ describe('<MaskedTextInput />', () => {
     expect(container).toMatchSnapshot();
   })
 
+  test('should preserve spaces in rawText when no mask is provided', async () => {
+    const onChangeTextMock = jest.fn();
+    const container = render(
+      <MaskedTextInput
+        onChangeText={onChangeTextMock}
+        testID="masked-text-input"
+      />
+    );
+
+    fireEvent.changeText(container.getByTestId('masked-text-input'), 'test test')
+
+    await waitFor(() => {
+      expect(onChangeTextMock).toHaveBeenCalledWith('test test', 'test test')
+    })
+  })
+
+  test('should remove spaces in rawText when mask is provided', async () => {
+    const onChangeTextMock = jest.fn();
+    const container = render(
+      <MaskedTextInput
+        mask="AAA-999"
+        onChangeText={onChangeTextMock}
+        testID="masked-text-input"
+      />
+    );
+
+    fireEvent.changeText(container.getByTestId('masked-text-input'), 'ABC 123')
+
+    await waitFor(() => {
+      expect(onChangeTextMock).toHaveBeenCalledWith('ABC-123', 'ABC123')
+    })
+  })
+
   test('should renders correctly with custom mask', () => {
     const container = render(
       <MaskedTextInput mask="AAA-999" onChangeText={mockedOnChangeText} />,
