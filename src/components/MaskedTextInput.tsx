@@ -52,38 +52,62 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
     },
     style
   ]
+  
+  const isMasked = () => pattern || type === 'currency'
+  
   const getMaskedValue = (value: string) =>
     mask(value, pattern, type, options, autoCapitalize)
+  
   const getUnMaskedValue = (value: string) =>
     unMask(value, type as 'custom' | 'currency')
 
+  const updateStatesWithMasking = (inputValue: string) => {
+    const newUnMaskedValue = getUnMaskedValue(inputValue)
+    const newMaskedValue = getMaskedValue(newUnMaskedValue)
+    
+    setMaskedValue(newMaskedValue)
+    setUnmaskedValue(newUnMaskedValue)
+    setRawValue(inputValue)
+  }
+
+  const updateStatesWithoutMasking = (inputValue: string) => {
+    setMaskedValue(inputValue)
+    setUnmaskedValue(inputValue)
+    setRawValue(inputValue)
+  }
+
+  const clearAllStates = () => {
+    setMaskedValue('')
+    setUnmaskedValue('')
+    setRawValue('')
+  }
+
   const defaultValueCustom = defaultValue || ''
   const defaultValueCurrency = defaultValue || '0'
+  const initialRawValue = value
 
-  const initialRawValue = value;
+  const initialMaskedValue = isMasked()
+    ? getMaskedValue(type === 'currency' ? defaultValueCurrency : defaultValueCustom)
+    : (value || defaultValueCustom)
 
-  const initialMaskedValue = getMaskedValue(
-    type === 'currency' ? defaultValueCurrency : defaultValueCustom
-  )
-
-  const initialUnMaskedValue = getUnMaskedValue(
-    type === 'currency' ? defaultValueCurrency : defaultValueCustom
-  )
+  const initialUnMaskedValue = isMasked()
+    ? getUnMaskedValue(type === 'currency' ? defaultValueCurrency : defaultValueCustom)
+    : (value || defaultValueCustom)
 
   const [maskedValue, setMaskedValue] = useState(initialMaskedValue)
   const [unMaskedValue, setUnmaskedValue] = useState(initialUnMaskedValue)
-  const [rawValue, setRawValue] = useState(initialRawValue);
+  const [rawValue, setRawValue] = useState(initialRawValue)
   const [isInitialRender, setIsInitialRender] = useState(true)
 
-  const actualValue = pattern || type === "currency" ? maskedValue : rawValue;
+  const actualValue = isMasked() ? maskedValue : rawValue
 
-  function onChange(value: string) {
-    const newUnMaskedValue = unMask(value, type as 'custom' | 'currency')
-    const newMaskedValue = mask(newUnMaskedValue, pattern, type, options)
 
-    setMaskedValue(newMaskedValue)
-    setUnmaskedValue(newUnMaskedValue)
-    setRawValue(value);
+  const handleChange = (inputValue: string) => {
+    if (isMasked()) {
+      updateStatesWithMasking(inputValue)
+    } else {
+      updateStatesWithoutMasking(inputValue)
+    }
   }
 
   useEffect(() => {
@@ -92,23 +116,35 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
       return
     }
 
-    onChangeText(maskedValue, unMaskedValue)
-  }, [maskedValue, unMaskedValue])
+    if (isMasked()) {
+      onChangeText(maskedValue, unMaskedValue)
+    } else {
+      onChangeText(rawValue || '', rawValue || '')
+    }
+  }, [maskedValue, unMaskedValue, rawValue])
 
   useEffect(() => {
     if (value) {
-      setMaskedValue(getMaskedValue(value))
-      setUnmaskedValue(getUnMaskedValue(value))
+      if (isMasked()) {
+        setMaskedValue(getMaskedValue(value))
+        setUnmaskedValue(getUnMaskedValue(value))
+      } else {
+        updateStatesWithoutMasking(value)
+      }
     } else {
-      setMaskedValue(initialMaskedValue)
-      setUnmaskedValue(initialUnMaskedValue)
+      if (isMasked()) {
+        setMaskedValue(initialMaskedValue)
+        setUnmaskedValue(initialUnMaskedValue)
+      } else {
+        clearAllStates()
+      }
     }
   }, [value])
 
   return (
     <>
       <TextInput
-        onChangeText={(value) => onChange(value)}
+        onChangeText={handleChange}
         ref={ref}
         maxLength={pattern.length || undefined}
         autoCapitalize={autoCapitalize}
