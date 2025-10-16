@@ -1,29 +1,34 @@
 import React from 'react'
-import { render, fireEvent, waitFor } from '@testing-library/react-native';
-import { MaskedTextInput } from './MaskedTextInput';
-import { Button, Keyboard, InputAccessoryView } from 'react-native';
-
+import { render, fireEvent, waitFor } from '@testing-library/react-native'
+import { MaskedTextInput } from './MaskedTextInput'
+import { Button, Keyboard, InputAccessoryView } from 'react-native'
 
 describe('<MaskedTextInput />', () => {
-  const mockedOnChangeText = jest.fn();
+  const mockedOnChangeText = jest.fn()
 
   test('should render correctly without a mask', () => {
     const container = render(
-      <MaskedTextInput value="with space and special* characters;" onChangeText={mockedOnChangeText} />,
-    );
-    expect(container).toMatchSnapshot();
+      <MaskedTextInput
+        value="with space and special* characters;"
+        onChangeText={mockedOnChangeText}
+      />
+    )
+    expect(container).toMatchSnapshot()
   })
 
   test('should preserve spaces in rawText when no mask is provided', async () => {
-    const onChangeTextMock = jest.fn();
+    const onChangeTextMock = jest.fn()
     const container = render(
       <MaskedTextInput
         onChangeText={onChangeTextMock}
         testID="masked-text-input"
       />
-    );
+    )
 
-    fireEvent.changeText(container.getByTestId('masked-text-input'), 'test test')
+    fireEvent.changeText(
+      container.getByTestId('masked-text-input'),
+      'test test'
+    )
 
     await waitFor(() => {
       expect(onChangeTextMock).toHaveBeenCalledWith('test test', 'test test')
@@ -31,14 +36,14 @@ describe('<MaskedTextInput />', () => {
   })
 
   test('should remove spaces in rawText when mask is provided', async () => {
-    const onChangeTextMock = jest.fn();
+    const onChangeTextMock = jest.fn()
     const container = render(
       <MaskedTextInput
         mask="AAA-999"
         onChangeText={onChangeTextMock}
         testID="masked-text-input"
       />
-    );
+    )
 
     fireEvent.changeText(container.getByTestId('masked-text-input'), 'ABC 123')
 
@@ -49,10 +54,10 @@ describe('<MaskedTextInput />', () => {
 
   test('should renders correctly with custom mask', () => {
     const container = render(
-      <MaskedTextInput mask="AAA-999" onChangeText={mockedOnChangeText} />,
-    );
-    expect(container).toMatchSnapshot();
-  });
+      <MaskedTextInput mask="AAA-999" onChangeText={mockedOnChangeText} />
+    )
+    expect(container).toMatchSnapshot()
+  })
 
   test('should renders correctly with custom mask default value', () => {
     const container = render(
@@ -61,9 +66,9 @@ describe('<MaskedTextInput />', () => {
         onChangeText={mockedOnChangeText}
         defaultValue="ABC-123"
       />
-    );
+    )
     expect(container.getByDisplayValue('ABC-123')).toBeTruthy()
-  });
+  })
 
   test('should renders correctly with currency mask', () => {
     const container = render(
@@ -77,9 +82,9 @@ describe('<MaskedTextInput />', () => {
         }}
         onChangeText={mockedOnChangeText}
       />
-    );
-    expect(container).toMatchSnapshot();
-  });
+    )
+    expect(container).toMatchSnapshot()
+  })
 
   test('should mask input text with custom mask', async () => {
     const container = render(
@@ -88,14 +93,18 @@ describe('<MaskedTextInput />', () => {
         onChangeText={mockedOnChangeText}
         testID="masked-text-input"
       />
-    );
+    )
 
     fireEvent.changeText(container.getByTestId('masked-text-input'), 'RCT777')
 
     await waitFor(() => {
       expect(container.getByDisplayValue('RCT-777')).toBeTruthy()
     })
-  });
+
+    await waitFor(() => {
+      expect(mockedOnChangeText).toHaveBeenCalledWith('RCT-777', 'RCT777')
+    })
+  })
 
   test('should mask input text with currency mask', async () => {
     const container = render(
@@ -110,71 +119,87 @@ describe('<MaskedTextInput />', () => {
         onChangeText={mockedOnChangeText}
         testID="masked-text-input"
       />
-    );
+    )
 
     fireEvent.changeText(container.getByTestId('masked-text-input'), '5999')
 
     await waitFor(() => {
       expect(container.getByDisplayValue('$59.99')).toBeTruthy()
     })
-  });
+
+    await waitFor(() => {
+      expect(mockedOnChangeText).toHaveBeenCalledWith('$59.99', '5999')
+    })
+  })
+
+  test('should not call onChangeText on mount', () => {
+    const onChangeTextMock = jest.fn()
+    render(<MaskedTextInput mask="AAA-999" onChangeText={onChangeTextMock} />)
+    expect(onChangeTextMock).not.toHaveBeenCalled()
+  })
 
   test('should renders correctly with an accessory view', () => {
     const container = render(
-      <MaskedTextInput         
-      type="currency"
-      options={{
-        prefix: '$',
-        decimalSeparator: '.',
-        groupSeparator: ',',
-        precision: 2,
-      }} 
-      onChangeText={mockedOnChangeText} 
-      inputAccessoryViewID='Done'
-      inputAccessoryView={
-        <InputAccessoryView nativeID='Done'>
-        <Button
-          onPress={() => Keyboard.dismiss()}
-          title="Clear text"
-        />
-        </InputAccessoryView>
-      }
-      />,
-    );
+      <MaskedTextInput
+        type="currency"
+        options={{
+          prefix: '$',
+          decimalSeparator: '.',
+          groupSeparator: ',',
+          precision: 2,
+        }}
+        onChangeText={mockedOnChangeText}
+        inputAccessoryViewID="Done"
+        inputAccessoryView={
+          <InputAccessoryView nativeID="Done">
+            <Button onPress={() => Keyboard.dismiss()} title="Clear text" />
+          </InputAccessoryView>
+        }
+      />
+    )
 
-    const tree = container.toJSON();
-    expect(tree[0].props.inputAccessoryViewID).toBe('Done');
-    expect(tree[1].props.nativeID).toBe('Done');
-  });
+    const tree = container.toJSON()
+    expect(tree[0].props.inputAccessoryViewID).toBe('Done')
+    expect(tree[1].props.nativeID).toBe('Done')
+  })
   test('should be bold when the textBold attribute is added', () => {
-    const container  =
-    render(<MaskedTextInput 
-      testID="masked-text-input" 
-      onChangeText={mockedOnChangeText} 
-      textBold 
-      mask="99/99/9999"
-      />)
-      expect(container.getByTestId('masked-text-input')).toHaveStyle({fontWeight: 'bold' });
-    });
-    test('should be italic when the textItalic attribute is added', () => {
-      const container  =
-      render(<MaskedTextInput 
-        testID="masked-text-input" 
-        onChangeText={mockedOnChangeText} 
-        textItalic 
+    const container = render(
+      <MaskedTextInput
+        testID="masked-text-input"
+        onChangeText={mockedOnChangeText}
+        textBold
         mask="99/99/9999"
-        />)
-        expect(container.getByTestId('masked-text-input')).toHaveStyle({fontStyle: 'italic' });
-    });
-    test('should be the line style added to the text when the textDecoration attribute has a non-null value', () => {
-      const textDecorationLine = 'underline'
-      const container  =
-      render(<MaskedTextInput
-        testID="masked-text-input" 
-        onChangeText={mockedOnChangeText} 
-        textDecoration={textDecorationLine} 
+      />
+    )
+    expect(container.getByTestId('masked-text-input')).toHaveStyle({
+      fontWeight: 'bold',
+    })
+  })
+  test('should be italic when the textItalic attribute is added', () => {
+    const container = render(
+      <MaskedTextInput
+        testID="masked-text-input"
+        onChangeText={mockedOnChangeText}
+        textItalic
         mask="99/99/9999"
-        />)
-        expect(container.getByTestId('masked-text-input')).toHaveStyle({textDecorationLine: textDecorationLine });
-    });  
-});
+      />
+    )
+    expect(container.getByTestId('masked-text-input')).toHaveStyle({
+      fontStyle: 'italic',
+    })
+  })
+  test('should be the line style added to the text when the textDecoration attribute has a non-null value', () => {
+    const textDecorationLine = 'underline'
+    const container = render(
+      <MaskedTextInput
+        testID="masked-text-input"
+        onChangeText={mockedOnChangeText}
+        textDecoration={textDecorationLine}
+        mask="99/99/9999"
+      />
+    )
+    expect(container.getByTestId('masked-text-input')).toHaveStyle({
+      textDecorationLine: textDecorationLine,
+    })
+  })
+})

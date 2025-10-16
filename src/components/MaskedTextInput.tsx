@@ -1,13 +1,18 @@
 import React, {
   useEffect,
   useState,
+  useRef,
   forwardRef,
   ForwardRefRenderFunction,
 } from 'react'
 import { TextInput, TextInputProps } from 'react-native'
 import { mask, unMask } from '../utils/mask'
-import type { FormatType, MaskOptions, StyleObj, TextDecorationOptions } from 'src/@types'
-
+import type {
+  FormatType,
+  MaskOptions,
+  StyleObj,
+  TextDecorationOptions,
+} from 'src/@types'
 
 type TIProps = Omit<TextInputProps, 'onChangeText'>
 export interface MaskedTextInputProps extends TIProps {
@@ -18,8 +23,8 @@ export interface MaskedTextInputProps extends TIProps {
   onChangeText: (text: string, rawText: string) => void
   inputAccessoryView?: JSX.Element
   textBold?: boolean
-  textItalic?:boolean
-  textDecoration?:TextDecorationOptions
+  textItalic?: boolean
+  textDecoration?: TextDecorationOptions
   style?: StyleObj
 }
 
@@ -48,37 +53,39 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
     {
       fontWeight: textBold && 'bold',
       fontStyle: textItalic && 'italic',
-      textDecorationLine: textDecoration
+      textDecorationLine: textDecoration,
     },
-    style
+    style,
   ]
-  
+
   const isMasked = () => pattern || type === 'currency'
-  
+
   const getMaskedValue = (value: string) =>
     mask(value, pattern, type, options, autoCapitalize)
-  
+
   const getUnMaskedValue = (value: string) =>
     unMask(value, type as 'custom' | 'currency')
 
   const updateStatesWithMasking = (inputValue: string) => {
     const newUnMaskedValue = getUnMaskedValue(inputValue)
     const newMaskedValue = getMaskedValue(newUnMaskedValue)
-    
+
     setMaskedValue(newMaskedValue)
-    setUnmaskedValue(newUnMaskedValue)
     setRawValue(inputValue)
+    latestValuesRef.current = {
+      masked: newMaskedValue,
+      unMasked: newUnMaskedValue,
+      raw: inputValue,
+    }
   }
 
   const updateStatesWithoutMasking = (inputValue: string) => {
     setMaskedValue(inputValue)
-    setUnmaskedValue(inputValue)
     setRawValue(inputValue)
   }
 
   const clearAllStates = () => {
     setMaskedValue('')
-    setUnmaskedValue('')
     setRawValue('')
   }
 
@@ -87,54 +94,105 @@ export const MaskedTextInputComponent: ForwardRefRenderFunction<
   const initialRawValue = value
 
   const initialMaskedValue = isMasked()
-    ? getMaskedValue(type === 'currency' ? defaultValueCurrency : defaultValueCustom)
-    : (value || defaultValueCustom)
+    ? getMaskedValue(
+        type === 'currency' ? defaultValueCurrency : defaultValueCustom
+      )
+    : value || defaultValueCustom
 
   const initialUnMaskedValue = isMasked()
-    ? getUnMaskedValue(type === 'currency' ? defaultValueCurrency : defaultValueCustom)
-    : (value || defaultValueCustom)
+    ? getUnMaskedValue(
+        type === 'currency' ? defaultValueCurrency : defaultValueCustom
+      )
+    : value || defaultValueCustom
 
   const [maskedValue, setMaskedValue] = useState(initialMaskedValue)
-  const [unMaskedValue, setUnmaskedValue] = useState(initialUnMaskedValue)
   const [rawValue, setRawValue] = useState(initialRawValue)
-  const [isInitialRender, setIsInitialRender] = useState(true)
+  const rafHandleRef = useRef<number | null>(null)
+  const timeoutHandleRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const latestValuesRef = useRef<{
+    masked: string
+    unMasked: string
+    raw: string | undefined
+  }>({
+    masked: initialMaskedValue,
+    unMasked: initialUnMaskedValue,
+    raw: initialRawValue,
+  })
 
   const actualValue = isMasked() ? maskedValue : rawValue
 
-
   const handleChange = (inputValue: string) => {
+    if (
+      rafHandleRef.current != null &&
+      typeof cancelAnimationFrame === 'function'
+    ) {
+      cancelAnimationFrame(rafHandleRef.current)
+      rafHandleRef.current = null
+    }
+    if (timeoutHandleRef.current != null) {
+      clearTimeout(timeoutHandleRef.current)
+      timeoutHandleRef.current = null
+    }
+
     if (isMasked()) {
       updateStatesWithMasking(inputValue)
     } else {
       updateStatesWithoutMasking(inputValue)
+      latestValuesRef.current = {
+        masked: inputValue,
+        unMasked: inputValue,
+        raw: inputValue,
+      }
+    }
+
+    const emit = () => {
+      const { masked, unMasked, raw } = latestValuesRef.current
+      if (isMasked()) {
+        onChangeText(masked, unMasked)
+      } else {
+        onChangeText(raw || '', raw || '')
+      }
+    }
+
+    if (typeof requestAnimationFrame === 'function') {
+      rafHandleRef.current = requestAnimationFrame(() => {
+        rafHandleRef.current = null
+        emit()
+      })
+    } else {
+      timeoutHandleRef.current = setTimeout(() => {
+        timeoutHandleRef.current = null
+        emit()
+      }, 0)
     }
   }
 
   useEffect(() => {
-    if (isInitialRender) {
-      setIsInitialRender(false)
-      return
+    return () => {
+      if (
+        rafHandleRef.current != null &&
+        typeof cancelAnimationFrame === 'function'
+      ) {
+        cancelAnimationFrame(rafHandleRef.current)
+        rafHandleRef.current = null
+      }
+      if (timeoutHandleRef.current != null) {
+        clearTimeout(timeoutHandleRef.current)
+        timeoutHandleRef.current = null
+      }
     }
-
-    if (isMasked()) {
-      onChangeText(maskedValue, unMaskedValue)
-    } else {
-      onChangeText(rawValue || '', rawValue || '')
-    }
-  }, [maskedValue, unMaskedValue, rawValue])
+  }, [])
 
   useEffect(() => {
     if (value) {
       if (isMasked()) {
         setMaskedValue(getMaskedValue(value))
-        setUnmaskedValue(getUnMaskedValue(value))
       } else {
         updateStatesWithoutMasking(value)
       }
     } else {
       if (isMasked()) {
         setMaskedValue(initialMaskedValue)
-        setUnmaskedValue(initialUnMaskedValue)
       } else {
         clearAllStates()
       }
