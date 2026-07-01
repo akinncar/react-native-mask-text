@@ -146,12 +146,102 @@ describe('<MaskedTextInput />', () => {
     expect(tree[0].props.inputAccessoryViewID).toBe('Done');
     expect(tree[1].props.nativeID).toBe('Done');
   });
+  test('should update the masked value when the controlled value prop changes', async () => {
+    const container = render(
+      <MaskedTextInput
+        mask="AAA-999"
+        onChangeText={mockedOnChangeText}
+        value="RCT777"
+      />
+    );
+
+    expect(container.getByDisplayValue('RCT-777')).toBeTruthy()
+
+    container.rerender(
+      <MaskedTextInput
+        mask="AAA-999"
+        onChangeText={mockedOnChangeText}
+        value="ABC123"
+      />
+    );
+
+    await waitFor(() => {
+      expect(container.getByDisplayValue('ABC-123')).toBeTruthy()
+    })
+  });
+
+  test('should reset to the masked default value when the controlled value is cleared', async () => {
+    const container = render(
+      <MaskedTextInput
+        mask="AAA-999"
+        onChangeText={mockedOnChangeText}
+        defaultValue="ABC-123"
+        value="RCT777"
+      />
+    );
+
+    expect(container.getByDisplayValue('RCT-777')).toBeTruthy()
+
+    container.rerender(
+      <MaskedTextInput
+        mask="AAA-999"
+        onChangeText={mockedOnChangeText}
+        defaultValue="ABC-123"
+        value=""
+      />
+    );
+
+    await waitFor(() => {
+      expect(container.getByDisplayValue('ABC-123')).toBeTruthy()
+    })
+  });
+
+  test('should update an unmasked input when the controlled value prop changes', async () => {
+    const container = render(
+      <MaskedTextInput
+        onChangeText={mockedOnChangeText}
+        value="first value"
+      />
+    );
+
+    expect(container.getByDisplayValue('first value')).toBeTruthy()
+
+    container.rerender(
+      <MaskedTextInput
+        onChangeText={mockedOnChangeText}
+        value="second value"
+      />
+    );
+
+    await waitFor(() => {
+      expect(container.getByDisplayValue('second value')).toBeTruthy()
+    })
+  });
+
+  test('should render correctly with a currency default value', () => {
+    const container = render(
+      <MaskedTextInput
+        type="currency"
+        options={{
+          prefix: '$',
+          decimalSeparator: '.',
+          groupSeparator: ',',
+          precision: 2,
+        }}
+        onChangeText={mockedOnChangeText}
+        defaultValue="1099"
+      />
+    );
+
+    expect(container.getByDisplayValue('$10.99')).toBeTruthy()
+  });
+
   test('should be bold when the textBold attribute is added', () => {
     const container  =
-    render(<MaskedTextInput 
-      testID="masked-text-input" 
-      onChangeText={mockedOnChangeText} 
-      textBold 
+    render(<MaskedTextInput
+      testID="masked-text-input"
+      onChangeText={mockedOnChangeText}
+      textBold
       mask="99/99/9999"
       />)
       expect(container.getByTestId('masked-text-input')).toHaveStyle({fontWeight: 'bold' });
