@@ -132,6 +132,13 @@ test('should unMask an empty currency value to zero', () => {
   expect(received).toBe(expected)
 })
 
+test('should unMask currency with no digits as 0', () => {
+  const expected = '0'
+  const received = unMask('$', 'currency')
+
+  expect(received).toBe(expected)
+})
+
 test('should default the unMask type to custom', () => {
   const expected = 'ABC123'
   const received = unMask('ABC-123')
