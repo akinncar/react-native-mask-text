@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, TextProps } from 'react-native'
 import { mask } from '../utils/mask'
-import type { MaskOptions, StyleObj, TextDecorationOptions } from 'src/@types'
+import type { MaskOptions, StyleObj, TextDecorationOptions } from '../@types'
 export interface MaskedTextProps {
   children: string
   mask?: string

@@ -6,7 +6,7 @@ import React, {
 } from 'react'
 import { TextInput, TextInputProps } from 'react-native'
 import { mask, unMask } from '../utils/mask'
-import type { FormatType, MaskOptions, StyleObj, TextDecorationOptions } from 'src/@types'
+import type { FormatType, MaskOptions, StyleObj, TextDecorationOptions } from '../@types'
 
 
 type TIProps = Omit<TextInputProps, 'onChangeText'>

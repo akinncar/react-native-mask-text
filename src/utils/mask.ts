@@ -1,6 +1,6 @@
 /* eslint-disable no-confusing-arrow */
 import { BigNumber } from 'bignumber.js'
-import type { AutoCapitalizeOptions } from 'src/@types/AutoCapitalizeOptions'
+import type { AutoCapitalizeOptions } from '../@types/AutoCapitalizeOptions'
 import type { FormatType } from '../@types/FormatType'
 import toPattern from './toPattern'
 
