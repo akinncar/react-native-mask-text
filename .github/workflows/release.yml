@@ -1,16 +1,27 @@
 name: release
-on: push
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
         with:
           node-version: 18.x
+          cache: yarn
 
-      - run: yarn install
+      - run: yarn install --frozen-lockfile
       - run: yarn test
       - run: yarn prepare
 
