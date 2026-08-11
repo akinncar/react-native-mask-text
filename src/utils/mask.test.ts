@@ -2,7 +2,7 @@ import { mask, unMask } from './mask'
 
 test('should mask with number digit pattern', () => {
   const expected = '342.934.480-80'
-  const received = mask('34293448080', '999.999.999-99')
+  const received = mask('34293448080', 'DDD.DDD.DDD-DD')
 
   expect(received).toBe(expected)
 })
@@ -16,7 +16,7 @@ test('should mask with alpha pattern', () => {
 
 test('should mask with alphanumeric pattern', () => {
   const expected = 'rct-777'
-  const received = mask('rct 777', 'AAA-999')
+  const received = mask('rct 777', 'AAA-DDD')
 
   expect(received).toBe(expected)
 })

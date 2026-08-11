@@ -16,11 +16,11 @@ yarn add react-native-mask-text
 
 Pattern used in masked components:
 
-- `9` - accept digit.
+- `D` - accept digit.
 - `A` - accept alpha.
 - `S` - accept alphanumeric.
 
-Ex: AAA-9999
+Ex: AAA-DDDD
 
 ### Usage MaskedTextInput (custom)
 
@@ -33,7 +33,7 @@ import { MaskedTextInput } from "react-native-mask-text";
 //...
 
 <MaskedTextInput
-  mask="AAA-9999"
+  mask="AAA-DDDD"
   onChangeText={(text, rawText) => {
     console.log(text);
     console.log(rawText);
@@ -61,7 +61,7 @@ import { MaskedText } from "react-native-mask-text";
 
 //...
 
-<MaskedText mask="99/99/9999">30081990</MaskedText>;
+<MaskedText mask="DD/DD/DDDD">30081990</MaskedText>;
 ```
 
 ## Date Mask
@@ -230,7 +230,7 @@ Function used to mask text.
 ```js
 import { mask } from "react-native-mask-text";
 
-const code = mask("ABC1234","AAA-9999") // return ABC-1234
+const code = mask("ABC1234","AAA-DDDD") // return ABC-1234
 ```
 
 ## Usage `unMask` function
